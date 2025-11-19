@@ -1,0 +1,26 @@
+skmap.qc.Test
+=============
+
+.. currentmodule:: skmap.qc
+
+.. autoclass:: Test
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~Test.accessibility
+      ~Test.raster_land_coverage
+   
+   
+
+   
+   
+   

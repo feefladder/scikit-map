@@ -1,0 +1,6 @@
+skmap.catalog.get\_whale\_dependencies
+======================================
+
+.. currentmodule:: skmap.catalog
+
+.. autofunction:: get_whale_dependencies

@@ -1,0 +1,6 @@
+skmap.misc.del\_memmap
+======================
+
+.. currentmodule:: skmap.misc
+
+.. autofunction:: del_memmap

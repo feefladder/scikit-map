@@ -1,0 +1,6 @@
+skmap.tiled\_data.get\_percentiele\_string
+==========================================
+
+.. currentmodule:: skmap.tiled_data
+
+.. autofunction:: get_percentiele_string

@@ -1,0 +1,6 @@
+skmap.parallel.utils.ProcessGeneratorLazy2
+==========================================
+
+.. currentmodule:: skmap.parallel.utils
+
+.. autofunction:: ProcessGeneratorLazy2

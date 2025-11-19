@@ -1,0 +1,6 @@
+skmap.misc.load\_memmap
+=======================
+
+.. currentmodule:: skmap.misc
+
+.. autofunction:: load_memmap

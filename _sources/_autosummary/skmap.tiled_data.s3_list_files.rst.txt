@@ -1,0 +1,6 @@
+skmap.tiled\_data.s3\_list\_files
+=================================
+
+.. currentmodule:: skmap.tiled_data
+
+.. autofunction:: s3_list_files

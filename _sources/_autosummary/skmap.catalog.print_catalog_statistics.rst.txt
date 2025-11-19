@@ -1,0 +1,6 @@
+skmap.catalog.print\_catalog\_statistics
+========================================
+
+.. currentmodule:: skmap.catalog
+
+.. autofunction:: print_catalog_statistics

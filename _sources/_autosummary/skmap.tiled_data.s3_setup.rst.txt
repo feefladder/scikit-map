@@ -1,0 +1,6 @@
+skmap.tiled\_data.s3\_setup
+===========================
+
+.. currentmodule:: skmap.tiled_data
+
+.. autofunction:: s3_setup

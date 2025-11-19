@@ -1,0 +1,41 @@
+skmap.modeler
+=============
+
+.. automodule:: skmap.modeler
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      Classifier
+      Modeler
+      Predicted
+      PredictedProbs
+      RFClassifier
+      RFRegressor
+      RFRegressorTrees
+      ReducedValues
+      Reducer
+      Regressor
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,58 @@
+skmap.misc
+==========
+
+.. automodule:: skmap.misc
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+   
+      date_range
+      del_memmap
+      find_files
+      is_memmap
+      load_memmap
+      make_tempdir
+      make_tempfile
+      mmdd_to_doy
+      nan_percentile
+      new_memmap
+      ref_memmap
+      sample_groups
+      sb_arr
+      sb_vec
+      ttprint
+      update_by_separator
+      vrt_warp
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      ControlS3
+      GoogleSheet
+      TimeTracker
+   
+   
+
+   
+   
+   
+
+
+

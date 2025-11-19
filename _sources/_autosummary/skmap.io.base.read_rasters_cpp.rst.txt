@@ -1,0 +1,6 @@
+skmap.io.base.read\_rasters\_cpp
+================================
+
+.. currentmodule:: skmap.io.base
+
+.. autofunction:: read_rasters_cpp

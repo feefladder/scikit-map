@@ -1,0 +1,35 @@
+skmap.tiled\_data.TiledDataExporter
+===================================
+
+.. currentmodule:: skmap.tiled_data
+
+.. autoclass:: TiledDataExporter
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~TiledDataExporter.check_all_exported
+      ~TiledDataExporter.convert_nan_to_median
+      ~TiledDataExporter.convert_nan_to_value
+      ~TiledDataExporter.derive_block_mean
+      ~TiledDataExporter.derive_block_mean_textures
+      ~TiledDataExporter.derive_block_quantiles_and_mean
+      ~TiledDataExporter.derive_block_quantiles_and_mean_textures
+      ~TiledDataExporter.derive_dominant_class
+      ~TiledDataExporter.derive_static_depths_quantiles_and_mean
+      ~TiledDataExporter.export_files
+      ~TiledDataExporter.fit_probabilities
+   
+   
+
+   
+   
+   

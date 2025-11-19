@@ -1,0 +1,6 @@
+skmap.catalog.parse\_template\_whale
+====================================
+
+.. currentmodule:: skmap.catalog
+
+.. autofunction:: parse_template_whale

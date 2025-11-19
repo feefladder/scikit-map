@@ -1,0 +1,52 @@
+skmap.parallel.utils
+====================
+
+.. automodule:: skmap.parallel.utils
+
+   
+   
+   .. rubric:: Module attributes
+
+   .. autosummary::
+      :toctree:
+   
+      CPU_COUNT
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+   
+      ProcessGeneratorLazy
+      ProcessGeneratorLazy2
+      ThreadGeneratorLazy
+      apply_along_axis
+      job
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      TaskSequencer
+      TilingProcessing
+   
+   
+
+   
+   
+   
+
+
+

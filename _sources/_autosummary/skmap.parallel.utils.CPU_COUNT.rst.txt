@@ -1,0 +1,6 @@
+skmap.parallel.utils.CPU\_COUNT
+===============================
+
+.. currentmodule:: skmap.parallel.utils
+
+.. autodata:: CPU_COUNT

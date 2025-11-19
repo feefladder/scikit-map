@@ -1,0 +1,6 @@
+skmap.misc.ref\_memmap
+======================
+
+.. currentmodule:: skmap.misc
+
+.. autofunction:: ref_memmap

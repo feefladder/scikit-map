@@ -1,0 +1,31 @@
+skmap.tiled\_data.TiledDataLoader
+=================================
+
+.. currentmodule:: skmap.tiled_data
+
+.. autoclass:: TiledDataLoader
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~TiledDataLoader.convert_nan_to_median
+      ~TiledDataLoader.convert_nan_to_value
+      ~TiledDataLoader.expand_valid_pixels
+      ~TiledDataLoader.fill_otf_constant
+      ~TiledDataLoader.filter_valid_pixels
+      ~TiledDataLoader.get_pixels_valid_idx
+      ~TiledDataLoader.load_tile_data
+   
+   
+
+   
+   
+   

@@ -1,0 +1,6 @@
+skmap.parallel.utils.ThreadGeneratorLazy
+========================================
+
+.. currentmodule:: skmap.parallel.utils
+
+.. autofunction:: ThreadGeneratorLazy

@@ -1,0 +1,26 @@
+skmap.tiled\_data.TiledData
+===========================
+
+.. currentmodule:: skmap.tiled_data
+
+.. autoclass:: TiledData
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~TiledData.convert_nan_to_median
+      ~TiledData.convert_nan_to_value
+   
+   
+
+   
+   
+   

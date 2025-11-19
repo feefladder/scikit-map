@@ -1,0 +1,35 @@
+skmap.modeler.Predicted
+=======================
+
+.. currentmodule:: skmap.modeler
+
+.. autoclass:: Predicted
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~Predicted.average_trees_depth_ranges
+      ~Predicted.average_trees_year_ranges
+      ~Predicted.compute_stats
+      ~Predicted.save_stats_layers
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Predicted.predicted_stats
+      ~Predicted.predicted_trees
+   
+   

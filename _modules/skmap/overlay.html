@@ -1,0 +1,1179 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>skmap.overlay &#8212; skmap library 0.7.3 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/readthedocs-custom.css?v=ec7c6751" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=c98573da"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/skmap/overlay';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.7" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/print_logo.svg" class="logo__image only-light" alt="skmap library 0.7.3 documentation - Home"/>
+    <img src="../../_static/print_logo_white.svg" class="logo__image only-dark pst-js-only" alt="skmap library 0.7.3 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    Home
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../quickstart/quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../in-depth/in-depth.html">
+    In-Depth
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../_autosummary/skmap.html">
+    API Reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="http://opendatascience.eu">
+    Open Data Science Europe
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://gitlab.com/geoharmonizer_inea/skmap" title="GitLab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-codeberg fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitLab</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    Home
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../quickstart/quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../in-depth/in-depth.html">
+    In-Depth
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../_autosummary/skmap.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="http://opendatascience.eu">
+    Open Data Science Europe
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://gitlab.com/geoharmonizer_inea/skmap" title="GitLab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-codeberg fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitLab</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../skmap.html" class="nav-link">skmap</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">skmap.overlay</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for skmap.overlay</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rasterio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shapely</span><span class="w"> </span><span class="kn">import</span> <span class="n">box</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skmap</span><span class="w"> </span><span class="kn">import</span> <span class="n">parallel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skmap.misc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ttprint</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skmap.catalog</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataCatalog</span><span class="p">,</span> <span class="n">run_whales</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">skmap_bindings</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sb</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="n">n_threads</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OMPI_MCA_rmaps_base_oversubscribe&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;USE_PYGEOS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PROJ_LIB&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/opt/conda/share/proj/&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;NUMEXPR_MAX_THREADS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_threads</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;NUMEXPR_NUM_THREADS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_threads</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OMP_THREAD_LIMIT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_threads</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OMP_NUM_THREADS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_threads</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENBLAS_NUM_THREADS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_threads</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;MKL_NUM_THREADS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_threads</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;VECLIB_MAXIMUM_THREADS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_threads</span><span class="si">}</span><span class="s2">&quot;</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">_ParallelOverlay</span><span class="p">:</span>
+    <span class="c1"># sampling only first band in every layer</span>
+
+    <span class="n">TILE_PLACEHOLDER</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{tile_id}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">points_x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">points_y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">raster_files</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">points_crs</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">raster_tiles</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">tile_id_col</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;tile_id&quot;</span><span class="p">,</span>
+        <span class="n">n_threads</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">parallel</span><span class="o">.</span><span class="n">CPU_COUNT</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_tile_id</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tile_id_col</span> <span class="o">=</span> <span class="n">tile_id_col</span>
+
+        <span class="k">if</span> <span class="n">raster_tiles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raster_tiles</span><span class="p">,</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                    <span class="n">ttprint</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reading </span><span class="si">{</span><span class="n">raster_tiles</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">raster_tiles</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">raster_tiles</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">default_tile_id</span> <span class="o">=</span> <span class="n">raster_tiles</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tile_id_col</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">raster_tiles</span> <span class="o">=</span> <span class="n">raster_tiles</span>
+
+        <span class="k">if</span> <span class="n">points_crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">points_crs</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span>
+                <span class="n">raster_files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+                    <span class="n">_ParallelOverlay</span><span class="o">.</span><span class="n">TILE_PLACEHOLDER</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_tile_id</span>
+                <span class="p">)</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">crs</span>
+
+        <span class="n">samples</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+            <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">points_x</span><span class="p">,</span> <span class="n">points_y</span><span class="p">),</span> <span class="n">crs</span><span class="o">=</span><span class="n">points_crs</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">raster_files</span> <span class="o">=</span> <span class="n">raster_files</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">layers</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">raster_file</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">raster_file</span> <span class="ow">in</span> <span class="n">raster_files</span>
+                    <span class="p">],</span>
+                    <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">raster_files</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+            <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+                <span class="n">_ParallelOverlay</span><span class="o">.</span><span class="n">_layer_metadata</span><span class="p">,</span>
+                <span class="n">default_tile_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">default_tile_id</span><span class="p">,</span>
+                <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">query_pixels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_blocks</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_layer_metadata</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">default_tile_id</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">_ParallelOverlay</span><span class="o">.</span><span class="n">_is_tiled</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">_ParallelOverlay</span><span class="o">.</span><span class="n">TILE_PLACEHOLDER</span><span class="p">,</span> <span class="n">default_tile_id</span><span class="p">)</span>
+        <span class="n">src</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+        <span class="n">row</span><span class="p">[</span><span class="s2">&quot;nodata&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">nodata</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">window</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">block_windows</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">row</span><span class="p">[</span><span class="s2">&quot;block_height&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">height</span>
+        <span class="n">row</span><span class="p">[</span><span class="s2">&quot;block_width&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">width</span>
+
+        <span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">default_tile_id</span><span class="p">),</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">height</span><span class="p">),</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">width</span><span class="p">),</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">block_shapes</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">to_gdal</span><span class="p">()),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">row</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">())</span>
+
+        <span class="k">return</span> <span class="n">row</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_is_tiled</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_ParallelOverlay</span><span class="o">.</span><span class="n">TILE_PLACEHOLDER</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_tiled_blocks</span><span class="p">(</span><span class="n">tile_path</span><span class="p">,</span> <span class="n">tile_id</span><span class="p">):</span>
+        <span class="n">tile_blocks</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">Env</span><span class="p">(</span>
+            <span class="n">CPL_VSIL_CURL_ALLOWED_EXTENSIONS</span><span class="o">=</span><span class="s2">&quot;.tif&quot;</span><span class="p">,</span> <span class="n">GDAL_HTTP_VERSION</span><span class="o">=</span><span class="s2">&quot;1.1&quot;</span>
+        <span class="p">):</span>
+            <span class="n">src</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">tile_path</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="n">window</span> <span class="ow">in</span> <span class="n">src</span><span class="o">.</span><span class="n">block_windows</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">tile_blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;tile_id&quot;</span><span class="p">:</span> <span class="n">tile_id</span><span class="p">,</span>
+                        <span class="s2">&quot;window&quot;</span><span class="p">:</span> <span class="n">window</span><span class="p">,</span>
+                        <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">box</span><span class="p">(</span>
+                            <span class="o">*</span><span class="n">rasterio</span><span class="o">.</span><span class="n">windows</span><span class="o">.</span><span class="n">bounds</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">transform</span><span class="p">)</span>
+                        <span class="p">),</span>
+                    <span class="p">}</span>
+                <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">tile_blocks</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_find_blocks_for_src</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">samples</span><span class="p">):</span>
+        <span class="n">gdf_blocks</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="n">_ParallelOverlay</span><span class="o">.</span><span class="n">_is_tiled</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+            <span class="n">samp_tiles</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">raster_tiles</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span>
+                <span class="n">samples</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raster_tiles</span><span class="o">.</span><span class="n">crs</span><span class="p">),</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span>
+            <span class="p">)[</span><span class="bp">self</span><span class="o">.</span><span class="n">tile_id_col</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+            <span class="n">raster_tiles</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">raster_tiles</span><span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">raster_tiles</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tile_id_col</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">samp_tiles</span><span class="p">)</span>
+            <span class="p">]</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="n">ttprint</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Retrieving block information for </span><span class="si">{</span><span class="n">raster_tiles</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> tiles.&quot;</span>
+                <span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">tile</span> <span class="ow">in</span> <span class="n">raster_tiles</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+                <span class="n">tile_id</span> <span class="o">=</span> <span class="n">tile</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tile_id_col</span><span class="p">]</span>
+                <span class="n">tile_path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">_ParallelOverlay</span><span class="o">.</span><span class="n">TILE_PLACEHOLDER</span><span class="p">,</span> <span class="n">tile_id</span><span class="p">)</span>
+                <span class="n">src</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">tile_path</span><span class="p">)</span>
+                <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="n">window</span> <span class="ow">in</span> <span class="n">src</span><span class="o">.</span><span class="n">block_windows</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+                    <span class="n">gdf_blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="p">{</span>
+                            <span class="s2">&quot;tile_id&quot;</span><span class="p">:</span> <span class="n">tile_id</span><span class="p">,</span>
+                            <span class="s2">&quot;window&quot;</span><span class="p">:</span> <span class="n">window</span><span class="p">,</span>
+                            <span class="s2">&quot;inv_transform&quot;</span><span class="p">:</span> <span class="o">~</span><span class="n">rasterio</span><span class="o">.</span><span class="n">windows</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
+                                <span class="n">window</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">transform</span>
+                            <span class="p">),</span>
+                            <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">box</span><span class="p">(</span>
+                                <span class="o">*</span><span class="n">rasterio</span><span class="o">.</span><span class="n">windows</span><span class="o">.</span><span class="n">bounds</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">transform</span><span class="p">)</span>
+                            <span class="p">),</span>
+                        <span class="p">}</span>
+                    <span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">src</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="n">window</span> <span class="ow">in</span> <span class="n">src</span><span class="o">.</span><span class="n">block_windows</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">gdf_blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;window&quot;</span><span class="p">:</span> <span class="n">window</span><span class="p">,</span>
+                        <span class="s2">&quot;inv_transform&quot;</span><span class="p">:</span> <span class="o">~</span><span class="n">rasterio</span><span class="o">.</span><span class="n">windows</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
+                            <span class="n">window</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">transform</span>
+                        <span class="p">),</span>
+                        <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">box</span><span class="p">(</span>
+                            <span class="o">*</span><span class="n">rasterio</span><span class="o">.</span><span class="n">windows</span><span class="o">.</span><span class="n">bounds</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">transform</span><span class="p">)</span>
+                        <span class="p">),</span>
+                    <span class="p">}</span>
+                <span class="p">)</span>
+
+        <span class="n">gdf_blocks</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">gdf_blocks</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">src</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">gdf_blocks</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;The layer </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> has not crs, need fix&quot;</span>
+        <span class="n">gdf_blocks</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">samples</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">gdf_blocks</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">sjoin</span><span class="p">(</span><span class="n">gdf_blocks</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;index_right&quot;</span><span class="p">:</span> <span class="s2">&quot;block_id&quot;</span><span class="p">})</span>
+        <span class="p">)</span>
+
+        <span class="n">query_pixels</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">ij</span><span class="p">,</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">gdf_blocks</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;block_id&quot;</span><span class="p">):</span>
+            <span class="n">inv_block_transform</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;inv_transform&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">window</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;window&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">block</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">x</span>
+            <span class="n">block</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">y</span>
+            <span class="n">block</span><span class="p">[</span><span class="s2">&quot;block_col_off&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">col_off</span>
+            <span class="n">block</span><span class="p">[</span><span class="s2">&quot;block_row_off&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">row_off</span>
+            <span class="n">block</span><span class="p">[</span><span class="s2">&quot;block_width&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">width</span>
+            <span class="n">block</span><span class="p">[</span><span class="s2">&quot;block_height&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">height</span>
+
+            <span class="n">block</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;sample_col&quot;</span><span class="p">],</span> <span class="n">block</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;sample_row&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">inv_block_transform</span> <span class="o">*</span> <span class="p">(</span><span class="n">block</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">])</span>
+            <span class="p">)</span>
+            <span class="n">block</span><span class="p">[</span><span class="s2">&quot;sample_col&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;sample_col&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int&quot;</span><span class="p">)</span>
+            <span class="n">block</span><span class="p">[</span><span class="s2">&quot;sample_row&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;sample_row&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int&quot;</span><span class="p">)</span>
+            <span class="n">block</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;geometry&quot;</span><span class="p">)</span>
+
+            <span class="n">query_pixels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">query_pixels</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;query_pixels is empty for path: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">query_pixels</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;window&quot;</span><span class="p">,</span> <span class="s2">&quot;inv_transform&quot;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">index</span><span class="p">))</span> <span class="o">&lt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Less then 50% of points queryed for path: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">, this is suspicious&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">res</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_find_blocks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="n">ttprint</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scanning blocks of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raster_files</span><span class="p">)</span><span class="si">}</span><span class="s2"> layers&quot;</span><span class="p">)</span>
+
+        <span class="n">query_pixels</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">layers</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;group&quot;</span><span class="p">):</span>
+            <span class="n">group</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;group&quot;</span><span class="p">]</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;path&quot;</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="n">ttprint</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Finding query pixels for </span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">layers</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> layers)&quot;</span><span class="p">)</span>
+
+            <span class="n">query_pixels</span><span class="p">[</span><span class="n">group</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_blocks_for_src</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">samples</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="n">ttprint</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;End&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">query_pixels</span>
+
+
+<div class="viewcode-block" id="SpaceOverlay">
+<a class="viewcode-back" href="../../_autosummary/skmap.overlay.SpaceOverlay.html#skmap.overlay.SpaceOverlay">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpaceOverlay</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Overlay a set of points over multiple raster files.</span>
+<span class="sd">    The retrieved pixel values are organized in columns</span>
+<span class="sd">    according to the filenames.</span>
+
+<span class="sd">    :param points: The path for vector file or ``geopandas.GeoDataFrame`` with</span>
+<span class="sd">        the points.</span>
+<span class="sd">    :param catalog: scikit-map data catalog.</span>
+<span class="sd">    :param n_threads: Number of CPU cores to be used in parallel. By default all cores</span>
+<span class="sd">        are used.</span>
+<span class="sd">    :param verbose: Use ``True`` to print the overlay progress.</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">points</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">],</span>
+        <span class="n">catalog</span><span class="p">:</span> <span class="n">DataCatalog</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="n">raster_tiles</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">tile_id_col</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;tile_id&quot;</span><span class="p">,</span>
+        <span class="n">n_threads</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">parallel</span><span class="o">.</span><span class="n">CPU_COUNT</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span> <span class="o">=</span> <span class="n">catalog</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer_paths</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_idxs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="o">.</span><span class="n">get_paths</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">raster_tiles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raster_tiles</span><span class="p">,</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                    <span class="n">ttprint</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reading </span><span class="si">{</span><span class="n">raster_tiles</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">raster_tiles</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">raster_tiles</span><span class="p">)</span>
+
+        <span class="n">processed_urls</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_paths</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/vsicurl/&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;</span><span class="si">{tile_id}</span><span class="s2">&quot;</span> <span class="ow">in</span> <span class="n">url</span><span class="p">:</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{tile_id}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">raster_tiles</span><span class="p">[</span><span class="n">tile_id_col</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">processed_urls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+        <span class="n">urls_with_404</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">processed_urls</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>
+                    <span class="n">urls_with_404</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error checking URL </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="n">ttprint</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">urls_with_404</span><span class="p">)</span><span class="si">}</span><span class="s2"> out of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer_paths</span><span class="p">)</span><span class="si">}</span><span class="s2"> URLs returning 404&quot;</span>
+            <span class="p">)</span>
+        <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls_with_404</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">urls_with_404</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;The listed URLs can not be reached&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+                <span class="n">points</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+            <span class="n">points</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">Point</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+            <span class="p">)</span>
+            <span class="n">points</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;geometry&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pts</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_threads</span> <span class="o">=</span> <span class="n">n_threads</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">parallelOverlay</span> <span class="o">=</span> <span class="n">_ParallelOverlay</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">layer_paths</span><span class="p">,</span>
+            <span class="n">points_crs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span>
+            <span class="n">raster_tiles</span><span class="o">=</span><span class="n">raster_tiles</span><span class="p">,</span>
+            <span class="n">tile_id_col</span><span class="o">=</span><span class="n">tile_id_col</span><span class="p">,</span>
+            <span class="n">n_threads</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_threads</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Drop duplicates (from overlapping tiles), find union of missing points (out of extent) to drop them and sorting the dataframes</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parallelOverlay</span><span class="o">.</span><span class="n">query_pixels</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">missing_indices</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parallelOverlay</span><span class="o">.</span><span class="n">query_pixels</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parallelOverlay</span><span class="o">.</span><span class="n">query_pixels</span><span class="p">[</span>
+                <span class="n">key</span>
+            <span class="p">][</span><span class="o">~</span><span class="bp">self</span><span class="o">.</span><span class="n">parallelOverlay</span><span class="o">.</span><span class="n">query_pixels</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s2">&quot;first&quot;</span><span class="p">)]</span>
+            <span class="n">missing_indices_key_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parallelOverlay</span><span class="o">.</span><span class="n">query_pixels</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+            <span class="p">)</span>
+            <span class="n">missing_indices</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="n">missing_indices_key_set</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+            <span class="n">key_indices_to_drop</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">missing_indices</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parallelOverlay</span><span class="o">.</span><span class="n">query_pixels</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parallelOverlay</span><span class="o">.</span><span class="n">query_pixels</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parallelOverlay</span><span class="o">.</span><span class="n">query_pixels</span><span class="p">[</span>
+                <span class="n">key</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">key_indices_to_drop</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parallelOverlay</span><span class="o">.</span><span class="n">query_pixels</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parallelOverlay</span><span class="o">.</span><span class="n">query_pixels</span><span class="p">[</span>
+                <span class="n">key</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Dropping </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">missing_indices</span><span class="p">)))</span><span class="si">}</span><span class="s2"> points out of </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> because out of extent&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">missing_indices</span><span class="p">))</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="SpaceOverlay.run">
+<a class="viewcode-back" href="../../_autosummary/skmap.overlay.SpaceOverlay.html#skmap.overlay.SpaceOverlay.run">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">max_ram_mb</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">out_file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">gdal_opts</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;GDAL_HTTP_VERSION&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;CPL_VSIL_CURL_ALLOWED_EXTENSIONS&quot;</span><span class="p">:</span> <span class="s2">&quot;.tif&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Execute the space overlay.</span>
+
+<span class="sd">        :param gdal_opts: Options for GDAL in a dictionary.</span>
+
+<span class="sd">        :param max_ram_mb: Maximum RAM that can be used for the overlay expressed in MB.</span>
+
+<span class="sd">        :returns: Data frame with the original columns plus the overlay result (one new</span>
+<span class="sd">            column per raster).</span>
+<span class="sd">        :rtype: geopandas.GeoDataFrame</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feats_names</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">feats_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="o">.</span><span class="n">get_unrolled_catalog</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="o">.</span><span class="n">data_size</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()))</span> <span class="o">&amp;</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="o">.</span><span class="n">data_size</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">feats_names</span><span class="p">)</span>
+        <span class="p">),</span> <span class="p">(</span>
+            <span class="s2">&quot;Catalog data size should coincide wiht the number of features, something went wrong&quot;</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ordered_feats_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">feats_idx</span><span class="p">,</span> <span class="n">feats_names</span><span class="p">))]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_overlay</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_data</span><span class="p">(</span><span class="n">gdal_opts</span><span class="p">,</span> <span class="n">max_ram_mb</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="o">.</span><span class="n">data_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_overlay</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span>
+        <span class="p">)</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_overlay</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">(</span>
+            <span class="s2">&quot;Not matching size between input points and the overalied data&quot;</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">layer_idxs</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_overlay</span><span class="p">[:,</span> <span class="p">:]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span>
+
+        <span class="n">run_whales</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_array</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_threads</span><span class="p">,</span>
+            <span class="n">lat_info</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+        <span class="p">)</span>
+        <span class="c1"># @FIXME check that all the filled flages are True or assert at this point</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_array</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ordered_feats_names</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;lat&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pts_out</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pts_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pts_out</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">out_file_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pts_out</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="n">out_file_name</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pts_out</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">read_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gdal_opts</span><span class="p">,</span> <span class="n">max_ram_mb</span><span class="p">):</span>
+        <span class="n">layers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parallelOverlay</span><span class="o">.</span><span class="n">layers</span>
+        <span class="n">layers</span><span class="p">[</span><span class="s2">&quot;layer_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">index</span>
+        <span class="n">query_pixels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parallelOverlay</span><span class="o">.</span><span class="n">query_pixels</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">query_pixels</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">data_overlay</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">query_pixels</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span>
+        <span class="p">)</span>
+        <span class="n">sb</span><span class="o">.</span><span class="n">fillArray</span><span class="p">(</span><span class="n">data_overlay</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_threads</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">keys</span><span class="p">):</span>
+            <span class="n">key_layer_ids</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">layers</span><span class="p">[</span><span class="n">layers</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">][</span><span class="s2">&quot;layer_id&quot;</span><span class="p">])</span>
+            <span class="p">]</span>
+            <span class="n">key_query_pixels</span> <span class="o">=</span> <span class="n">query_pixels</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">assert</span> <span class="n">key_query_pixels</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">query_pixels</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span>
+                <span class="s2">&quot;Query pixel size is inconsisten between keys, something went wrong&quot;</span>
+            <span class="p">)</span>
+            <span class="n">unique_blocks</span> <span class="o">=</span> <span class="n">key_query_pixels</span><span class="p">[</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;block_id&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;block_col_off&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;block_row_off&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;block_height&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;block_width&quot;</span><span class="p">,</span>
+                <span class="p">]</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="s2">&quot;block_id&quot;</span><span class="p">)</span>
+            <span class="n">unique_blocks_ids</span> <span class="o">=</span> <span class="n">unique_blocks</span><span class="p">[</span><span class="s2">&quot;block_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="n">unique_blocks_dict</span> <span class="o">=</span> <span class="n">unique_blocks</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;block_id&quot;</span><span class="p">)[</span>
+                <span class="p">[</span><span class="s2">&quot;block_row_off&quot;</span><span class="p">,</span> <span class="s2">&quot;block_col_off&quot;</span><span class="p">,</span> <span class="s2">&quot;block_height&quot;</span><span class="p">,</span> <span class="s2">&quot;block_width&quot;</span><span class="p">]</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">)</span>
+            <span class="n">layer_path_dict</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;layer_id&quot;</span><span class="p">)[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="n">ttprint</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Loading and sampling </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">key_layer_ids</span><span class="p">))</span><span class="si">}</span><span class="s2"> raster layers for group </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+            <span class="n">layer_nodata_dict</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;layer_id&quot;</span><span class="p">)[</span><span class="s2">&quot;nodata&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+            <span class="n">key_layer_ids_comb</span><span class="p">,</span> <span class="n">unique_blocks_ids_comb</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span>
+                <span class="nb">list</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">key_layer_ids</span><span class="p">,</span> <span class="n">unique_blocks_ids</span><span class="p">))</span>
+            <span class="p">)</span>
+            <span class="n">block_row_off_comb</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">unique_blocks_dict</span><span class="p">[</span><span class="n">ubid</span><span class="p">][</span><span class="s2">&quot;block_row_off&quot;</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">ubid</span> <span class="ow">in</span> <span class="n">unique_blocks_ids_comb</span>
+            <span class="p">]</span>
+            <span class="n">block_col_off_comb</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">unique_blocks_dict</span><span class="p">[</span><span class="n">ubid</span><span class="p">][</span><span class="s2">&quot;block_col_off&quot;</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">ubid</span> <span class="ow">in</span> <span class="n">unique_blocks_ids_comb</span>
+            <span class="p">]</span>
+            <span class="n">block_height_comb</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">unique_blocks_dict</span><span class="p">[</span><span class="n">ubid</span><span class="p">][</span><span class="s2">&quot;block_height&quot;</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">ubid</span> <span class="ow">in</span> <span class="n">unique_blocks_ids_comb</span>
+            <span class="p">]</span>
+            <span class="n">block_width_comb</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">unique_blocks_dict</span><span class="p">[</span><span class="n">ubid</span><span class="p">][</span><span class="s2">&quot;block_width&quot;</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">ubid</span> <span class="ow">in</span> <span class="n">unique_blocks_ids_comb</span>
+            <span class="p">]</span>
+            <span class="n">key_layer_paths_comb</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">layer_path_dict</span><span class="p">[</span><span class="n">ulid</span><span class="p">]</span> <span class="k">for</span> <span class="n">ulid</span> <span class="ow">in</span> <span class="n">key_layer_ids_comb</span>
+            <span class="p">]</span>
+            <span class="n">key_layer_nodatas_comb</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="k">if</span> <span class="n">layer_nodata_dict</span><span class="p">[</span><span class="n">ulid</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">layer_nodata_dict</span><span class="p">[</span><span class="n">ulid</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">ulid</span> <span class="ow">in</span> <span class="n">key_layer_ids_comb</span>
+            <span class="p">]</span>
+            <span class="n">n_comb</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">key_layer_paths_comb</span><span class="p">)</span>
+            <span class="n">bands_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s2">&quot;tile_id&quot;</span> <span class="ow">in</span> <span class="n">query_pixels</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="n">block_tile_id_dict</span> <span class="o">=</span> <span class="n">key_query_pixels</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;block_id&quot;</span><span class="p">)[</span>
+                    <span class="s2">&quot;tile_id&quot;</span>
+                <span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+                <span class="n">key_layer_paths_comb</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="n">key_layer_paths_comb</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">tile_id</span><span class="o">=</span><span class="n">block_tile_id_dict</span><span class="p">[</span><span class="n">unique_blocks_ids_comb</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span>
+                    <span class="p">)</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">key_layer_paths_comb</span><span class="p">))</span>
+                <span class="p">]</span>
+            <span class="n">block_height</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">block_height_comb</span><span class="p">)</span>
+            <span class="n">block_width</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">block_width_comb</span><span class="p">)</span>
+            <span class="n">n_block_pix</span> <span class="o">=</span> <span class="n">block_height</span> <span class="o">*</span> <span class="n">block_width</span>
+            <span class="c1"># Factor 2 is heuristic to keep margin for temporary variables</span>
+            <span class="n">max_comb_chunk</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span>
+                    <span class="p">(</span><span class="n">max_ram_mb</span> <span class="o">-</span> <span class="n">data_overlay</span><span class="o">.</span><span class="n">size</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span><span class="p">)</span>
+                    <span class="o">*</span> <span class="mi">1024</span>
+                    <span class="o">*</span> <span class="mi">1024</span>
+                    <span class="o">/</span> <span class="mi">4</span>
+                    <span class="o">/</span> <span class="n">n_block_pix</span>
+                    <span class="o">/</span> <span class="mi">2</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">assert</span> <span class="n">max_comb_chunk</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span>
+                <span class="s2">&quot;skmap-error 42: max_ram_mb too small, can not chunk&quot;</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">chunk_start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_comb</span><span class="p">,</span> <span class="n">max_comb_chunk</span><span class="p">):</span>
+                <span class="n">key_layer_paths_chunk</span> <span class="o">=</span> <span class="n">key_layer_paths_comb</span><span class="p">[</span>
+                    <span class="n">chunk_start</span> <span class="p">:</span> <span class="n">chunk_start</span> <span class="o">+</span> <span class="n">max_comb_chunk</span>
+                <span class="p">]</span>
+                <span class="n">block_col_off_chunk</span> <span class="o">=</span> <span class="n">block_col_off_comb</span><span class="p">[</span>
+                    <span class="n">chunk_start</span> <span class="p">:</span> <span class="n">chunk_start</span> <span class="o">+</span> <span class="n">max_comb_chunk</span>
+                <span class="p">]</span>
+                <span class="n">block_row_off_chunk</span> <span class="o">=</span> <span class="n">block_row_off_comb</span><span class="p">[</span>
+                    <span class="n">chunk_start</span> <span class="p">:</span> <span class="n">chunk_start</span> <span class="o">+</span> <span class="n">max_comb_chunk</span>
+                <span class="p">]</span>
+                <span class="n">block_height_chunk</span> <span class="o">=</span> <span class="n">block_height_comb</span><span class="p">[</span>
+                    <span class="n">chunk_start</span> <span class="p">:</span> <span class="n">chunk_start</span> <span class="o">+</span> <span class="n">max_comb_chunk</span>
+                <span class="p">]</span>
+                <span class="n">block_width_chunk</span> <span class="o">=</span> <span class="n">block_width_comb</span><span class="p">[</span>
+                    <span class="n">chunk_start</span> <span class="p">:</span> <span class="n">chunk_start</span> <span class="o">+</span> <span class="n">max_comb_chunk</span>
+                <span class="p">]</span>
+                <span class="n">key_layer_nodatas_chunk</span> <span class="o">=</span> <span class="n">key_layer_nodatas_comb</span><span class="p">[</span>
+                    <span class="n">chunk_start</span> <span class="p">:</span> <span class="n">chunk_start</span> <span class="o">+</span> <span class="n">max_comb_chunk</span>
+                <span class="p">]</span>
+                <span class="n">unique_blocks_ids_chunk</span> <span class="o">=</span> <span class="n">unique_blocks_ids_comb</span><span class="p">[</span>
+                    <span class="n">chunk_start</span> <span class="p">:</span> <span class="n">chunk_start</span> <span class="o">+</span> <span class="n">max_comb_chunk</span>
+                <span class="p">]</span>
+                <span class="n">key_layer_ids_chunk</span> <span class="o">=</span> <span class="n">key_layer_ids_comb</span><span class="p">[</span>
+                    <span class="n">chunk_start</span> <span class="p">:</span> <span class="n">chunk_start</span> <span class="o">+</span> <span class="n">max_comb_chunk</span>
+                <span class="p">]</span>
+                <span class="n">chunk_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">key_layer_paths_chunk</span><span class="p">)</span>
+                <span class="n">data_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">chunk_size</span><span class="p">,</span> <span class="n">n_block_pix</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+                <span class="n">perm_vec</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">chunk_size</span><span class="p">)</span>
+                <span class="n">sb</span><span class="o">.</span><span class="n">readDataBlocks</span><span class="p">(</span>
+                    <span class="n">data_array</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">n_threads</span><span class="p">,</span>
+                    <span class="n">key_layer_paths_chunk</span><span class="p">,</span>
+                    <span class="n">perm_vec</span><span class="p">,</span>
+                    <span class="n">block_col_off_chunk</span><span class="p">,</span>
+                    <span class="n">block_row_off_chunk</span><span class="p">,</span>
+                    <span class="n">block_width_chunk</span><span class="p">,</span>
+                    <span class="n">block_height_chunk</span><span class="p">,</span>
+                    <span class="n">bands_list</span><span class="p">,</span>
+                    <span class="n">gdal_opts</span><span class="p">,</span>
+                    <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="n">pix_blok_ids</span> <span class="o">=</span> <span class="n">key_query_pixels</span><span class="p">[</span><span class="s2">&quot;block_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="n">sample_rows</span> <span class="o">=</span> <span class="n">key_query_pixels</span><span class="p">[</span><span class="s2">&quot;sample_row&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="n">sample_cols</span> <span class="o">=</span> <span class="n">key_query_pixels</span><span class="p">[</span><span class="s2">&quot;sample_col&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="n">block_width_dict</span> <span class="o">=</span> <span class="n">unique_blocks</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;block_id&quot;</span><span class="p">)[</span>
+                    <span class="s2">&quot;block_width&quot;</span>
+                <span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+                <span class="n">pix_inblock_idxs</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="n">sample_rows</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">block_width_dict</span><span class="p">[</span><span class="n">ubid</span><span class="p">]</span> <span class="o">+</span> <span class="n">sample_cols</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+                    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">ubid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pix_blok_ids</span><span class="p">)</span>
+                <span class="p">]</span>
+                <span class="n">sb</span><span class="o">.</span><span class="n">extractOverlay</span><span class="p">(</span>
+                    <span class="n">data_array</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">n_threads</span><span class="p">,</span>
+                    <span class="n">pix_blok_ids</span><span class="p">,</span>
+                    <span class="n">pix_inblock_idxs</span><span class="p">,</span>
+                    <span class="n">unique_blocks_ids_chunk</span><span class="p">,</span>
+                    <span class="n">key_layer_ids_chunk</span><span class="p">,</span>
+                    <span class="n">data_overlay</span><span class="p">,</span>
+                <span class="p">)</span>
+        <span class="k">return</span> <span class="n">data_overlay</span></div>
+
+
+
+<div class="viewcode-block" id="SpaceTimeOverlay">
+<a class="viewcode-back" href="../../_autosummary/skmap.overlay.SpaceTimeOverlay.html#skmap.overlay.SpaceTimeOverlay">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpaceTimeOverlay</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Overlay a set of points over multiple raster considering the year information.</span>
+<span class="sd">    The retrieved pixel values are organized in columns according to the filenames.</span>
+
+<span class="sd">    :param points: The path for vector file or ``geopandas.GeoDataFrame`` with</span>
+<span class="sd">        the points.</span>
+<span class="sd">    :param col_date: Date column to retrieve the year information.</span>
+<span class="sd">    :param  catalog.</span>
+<span class="sd">    :param n_threads: Number of CPU cores to be used in parallel. By default all cores</span>
+<span class="sd">        are used.</span>
+<span class="sd">    :param verbose: Use ``True`` to print the overlay progress.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    &gt;&gt;&gt; from skmap.overlay import SpaceTimeOverlay</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">points</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">],</span>
+        <span class="n">col_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">catalog</span><span class="p">:</span> <span class="n">DataCatalog</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="n">raster_tiles</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">tile_id_col</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;tile_id&quot;</span><span class="p">,</span>
+        <span class="n">n_threads</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">parallel</span><span class="o">.</span><span class="n">CPU_COUNT</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+                <span class="n">points</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+            <span class="n">points</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">Point</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+            <span class="p">)</span>
+            <span class="n">points</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;geometry&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pts</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_threads</span> <span class="o">=</span> <span class="n">n_threads</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">col_date</span> <span class="o">=</span> <span class="n">col_date</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">overlay_objs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">year_catalogs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span> <span class="o">=</span> <span class="n">catalog</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">col_date</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">col_date</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">year_points</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="o">.</span><span class="n">get_groups</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">year_points</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">col_date</span><span class="p">]</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">year_points</span><span class="p">[</span><span class="n">year</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">year_catalog</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">year_catalog</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+                    <span class="n">catalog</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(),</span> <span class="p">[</span><span class="n">year</span><span class="p">]</span>
+                <span class="p">)</span>  <span class="c1"># &#39;common&#39; group is retrieved by default</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">year_catalogs</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">year_catalog</span>
+
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                    <span class="n">ttprint</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Overlay </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">year_points</span><span class="p">[</span><span class="n">year</span><span class="p">])</span><span class="si">}</span><span class="s2"> points from </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2"> in </span><span class="si">{</span><span class="n">year_catalog</span><span class="o">.</span><span class="n">data_size</span><span class="si">}</span><span class="s2"> raster layers&quot;</span>
+                    <span class="p">)</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">overlay_objs</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">SpaceOverlay</span><span class="p">(</span>
+                    <span class="n">points</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">year_points</span><span class="p">[</span><span class="n">year</span><span class="p">],</span>
+                    <span class="n">catalog</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">year_catalogs</span><span class="p">[</span><span class="n">year</span><span class="p">],</span>
+                    <span class="n">raster_tiles</span><span class="o">=</span><span class="n">raster_tiles</span><span class="p">,</span>
+                    <span class="n">tile_id_col</span><span class="o">=</span><span class="n">tile_id_col</span><span class="p">,</span>
+                    <span class="n">n_threads</span><span class="o">=</span><span class="n">n_threads</span><span class="p">,</span>
+                    <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;No points to overlay for year </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">, removing it from the catalog&quot;</span>
+                <span class="p">)</span>
+                <span class="k">del</span> <span class="n">catalog</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">year</span><span class="p">]</span>
+
+<div class="viewcode-block" id="SpaceTimeOverlay.run">
+<a class="viewcode-back" href="../../_autosummary/skmap.overlay.SpaceTimeOverlay.html#skmap.overlay.SpaceTimeOverlay.run">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">max_ram_mb</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">out_file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">gdal_opts</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;GDAL_HTTP_VERSION&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;CPL_VSIL_CURL_ALLOWED_EXTENSIONS&quot;</span><span class="p">:</span> <span class="s2">&quot;.tif&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Execute the spacetime overlay. It removes the year part from the column names.</span>
+<span class="sd">        For example, the raster ``raster_20101202..20110320.tif`` results in the column</span>
+<span class="sd">        name ``raster_1202..0320``.</span>
+
+<span class="sd">        :returns: Data frame with the original columns plus the overlay result (one new</span>
+<span class="sd">            column per raster).</span>
+<span class="sd">        :rtype: geopandas.GeoDataFrame</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="o">.</span><span class="n">get_groups</span><span class="p">():</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="n">ttprint</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running the overlay for </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">year_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">overlay_objs</span><span class="p">[</span><span class="n">year</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">max_ram_mb</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">gdal_opts</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">result</span> <span class="o">=</span> <span class="n">year_result</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">,</span> <span class="n">year_result</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">out_file_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="n">out_file_name</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2019-2021, Geo-harmonizer project team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

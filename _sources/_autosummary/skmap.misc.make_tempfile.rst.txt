@@ -1,0 +1,6 @@
+skmap.misc.make\_tempfile
+=========================
+
+.. currentmodule:: skmap.misc
+
+.. autofunction:: make_tempfile

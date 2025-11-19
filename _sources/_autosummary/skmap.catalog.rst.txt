@@ -1,0 +1,43 @@
+skmap.catalog
+=============
+
+.. automodule:: skmap.catalog
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+   
+      get_whale_dependencies
+      parse_template_whale
+      print_catalog_statistics
+      run_whales
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      DataCatalog
+   
+   
+
+   
+   
+   
+
+
+

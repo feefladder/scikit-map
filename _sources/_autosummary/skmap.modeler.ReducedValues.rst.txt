@@ -1,0 +1,31 @@
+skmap.modeler.ReducedValues
+===========================
+
+.. currentmodule:: skmap.modeler
+
+.. autoclass:: ReducedValues
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~ReducedValues.save_reduced_layer
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ReducedValues.reduced_values
+   
+   

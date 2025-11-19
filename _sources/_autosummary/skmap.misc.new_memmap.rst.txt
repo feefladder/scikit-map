@@ -1,0 +1,6 @@
+skmap.misc.new\_memmap
+======================
+
+.. currentmodule:: skmap.misc
+
+.. autofunction:: new_memmap

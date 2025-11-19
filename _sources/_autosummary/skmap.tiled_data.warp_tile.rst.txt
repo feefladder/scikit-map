@@ -1,0 +1,6 @@
+skmap.tiled\_data.warp\_tile
+============================
+
+.. currentmodule:: skmap.tiled_data
+
+.. autofunction:: warp_tile

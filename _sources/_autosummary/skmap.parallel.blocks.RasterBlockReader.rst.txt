@@ -1,0 +1,25 @@
+skmap.parallel.blocks.RasterBlockReader
+=======================================
+
+.. currentmodule:: skmap.parallel.blocks
+
+.. autoclass:: RasterBlockReader
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~RasterBlockReader.read_overlay
+   
+   
+
+   
+   
+   

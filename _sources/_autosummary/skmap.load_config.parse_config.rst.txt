@@ -1,0 +1,6 @@
+skmap.load\_config.parse\_config
+================================
+
+.. currentmodule:: skmap.load_config
+
+.. autofunction:: parse_config

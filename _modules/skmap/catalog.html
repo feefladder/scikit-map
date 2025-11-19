@@ -1,0 +1,1155 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>skmap.catalog &#8212; skmap library 0.7.3 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/readthedocs-custom.css?v=ec7c6751" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=c98573da"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/skmap/catalog';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.7" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/print_logo.svg" class="logo__image only-light" alt="skmap library 0.7.3 documentation - Home"/>
+    <img src="../../_static/print_logo_white.svg" class="logo__image only-dark pst-js-only" alt="skmap library 0.7.3 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    Home
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../quickstart/quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../in-depth/in-depth.html">
+    In-Depth
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../_autosummary/skmap.html">
+    API Reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="http://opendatascience.eu">
+    Open Data Science Europe
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://gitlab.com/geoharmonizer_inea/skmap" title="GitLab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-codeberg fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitLab</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    Home
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../quickstart/quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../in-depth/in-depth.html">
+    In-Depth
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../_autosummary/skmap.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="http://opendatascience.eu">
+    Open Data Science Europe
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://gitlab.com/geoharmonizer_inea/skmap" title="GitLab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-codeberg fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitLab</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../skmap.html" class="nav-link">skmap</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">skmap.catalog</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for skmap.catalog</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">skmap_bindings</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sb</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skmap.misc</span><span class="w"> </span><span class="kn">import</span> <span class="n">mmdd_to_doy</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;USE_PYGEOS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PROJ_LIB&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/opt/conda/share/proj/&quot;</span>
+
+
+<div class="viewcode-block" id="DataCatalog">
+<a class="viewcode-back" href="../../_autosummary/skmap.catalog.DataCatalog.html#skmap.catalog.DataCatalog">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DataCatalog</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">data_size</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_size</span> <span class="o">=</span> <span class="n">data_size</span>
+
+<div class="viewcode-block" id="DataCatalog.create_catalog">
+<a class="viewcode-back" href="../../_autosummary/skmap.catalog.DataCatalog.html#skmap.catalog.DataCatalog.create_catalog">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_catalog</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">catalog_def</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span>
+        <span class="n">years</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+        <span class="n">base_path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">str</span><span class="p">],</span>
+        <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">replace_group_feat_name</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a metadata catalog from csv file</span>
+
+<span class="sd">        :param catalog_def: Dataframe or csv with definitions</span>
+<span class="sd">        :type catalog_def: Union[pd.DataFrame, str]</span>
+<span class="sd">        :param years: list of years in analysis</span>
+<span class="sd">        :type years: List[int]</span>
+<span class="sd">        :param base_path: Base path</span>
+<span class="sd">        :type base_path: Union[List[str], str]</span>
+<span class="sd">        :param verbose: whether to enable verbose output, defaults to True</span>
+<span class="sd">        :type verbose: bool, optional</span>
+<span class="sd">        :param replace_group_feat_name: _description_, defaults to False</span>
+<span class="sd">        :type replace_group_feat_name: bool, optional</span>
+<span class="sd">        :return: A parsed catalog from the input file</span>
+<span class="sd">        :rtype: DataCatalog</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># make the catalog</span>
+        <span class="n">catalog_dict</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_create_dict_catalog</span><span class="p">(</span>
+            <span class="n">catalog_def</span><span class="p">,</span> <span class="n">years</span><span class="p">,</span> <span class="n">base_path</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="n">replace_group_feat_name</span>
+        <span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="s2">&quot;common&quot;</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>  <span class="c1"># common is default</span>
+            <span class="n">years</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">&quot;common&quot;</span><span class="p">]</span>
+
+        <span class="n">features_names</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_feature_names</span><span class="p">(</span><span class="n">catalog_dict</span><span class="p">)</span>
+        <span class="n">data_size</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">features_names</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">f</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">catalog_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span>
+                    <span class="k">continue</span>
+                <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">f</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">catalog_dict</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">f</span><span class="p">],</span> <span class="s2">&quot;idx&quot;</span><span class="p">:</span> <span class="n">data_size</span><span class="p">}</span>
+                <span class="n">data_size</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">data</span><span class="p">,</span> <span class="n">data_size</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">expand_whales_dependencies</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">data_size</span><span class="p">)</span>
+
+        <span class="c1"># calls __init__</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">data_size</span><span class="p">)</span></div>
+
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_dict_catalog</span><span class="p">(</span>
+        <span class="n">catalog_def</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span>
+        <span class="n">years</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+        <span class="n">base_path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">str</span><span class="p">],</span>
+        <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">replace_group_feat_name</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">catalog_def</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="n">covar</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">catalog_def</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">covar</span> <span class="o">=</span> <span class="n">catalog_def</span>
+        <span class="c1"># Replace placeholders in `layer_name` and `path`</span>
+        <span class="k">if</span> <span class="n">replace_group_feat_name</span><span class="p">:</span>
+            <span class="n">year_repl</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{year}</span><span class="s2">&quot;</span>
+            <span class="n">year_plus_one_repl</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{year_plus_one}</span><span class="s2">&quot;</span>
+            <span class="n">year_minus_one_repl</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{year_minus_one}</span><span class="s2">&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">year_repl</span> <span class="o">=</span> <span class="s2">&quot;YYYY&quot;</span>
+            <span class="n">year_plus_one_repl</span> <span class="o">=</span> <span class="s2">&quot;YYPO&quot;</span>
+            <span class="n">year_minus_one_repl</span> <span class="o">=</span> <span class="s2">&quot;YYMO&quot;</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">replace_layer_name_placeholders</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+            <span class="n">replacements</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;</span><span class="si">{year}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">year_repl</span><span class="p">,</span>
+                <span class="s2">&quot;</span><span class="si">{year_plus_one}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">year_plus_one_repl</span><span class="p">,</span>
+                <span class="s2">&quot;</span><span class="si">{year_minus_one}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">year_minus_one_repl</span><span class="p">,</span>
+                <span class="s2">&quot;</span><span class="si">{start_month}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{start_month}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;</span><span class="si">{end_month}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{end_month}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;</span><span class="si">{perc}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{perc}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;</span><span class="si">{dt}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="s2">&quot;{{dt}}&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span> <span class="ow">in</span> <span class="n">replacements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">value</span>
+
+        <span class="n">covar</span><span class="p">[</span><span class="s2">&quot;layer_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">covar</span><span class="p">[</span><span class="s2">&quot;layer_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">replace_layer_name_placeholders</span><span class="p">)</span>
+        <span class="n">covar</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">covar</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">replace_layer_name_placeholders</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="s2">&quot;/whale/&quot;</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="n">x</span>
+        <span class="p">)</span>
+        <span class="n">perc_mask</span> <span class="o">=</span> <span class="n">covar</span><span class="p">[</span><span class="s2">&quot;layer_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\{perc\}&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="n">covar</span><span class="p">[</span>
+            <span class="s2">&quot;path&quot;</span>
+        <span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\{perc\}&quot;</span><span class="p">)</span>
+        <span class="n">perc_expanded_rows</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">covar</span><span class="p">[</span><span class="n">perc_mask</span><span class="p">]</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">perc_values</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">p</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;perc&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;perc&quot;</span><span class="p">])</span> <span class="k">else</span> <span class="p">[</span><span class="kc">None</span><span class="p">])</span>
+            <span class="p">]</span>
+            <span class="k">for</span> <span class="n">perc</span> <span class="ow">in</span> <span class="n">perc_values</span><span class="p">:</span>
+                <span class="n">new_row</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">perc</span><span class="p">:</span>
+                    <span class="n">new_row</span><span class="p">[</span><span class="s2">&quot;layer_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_row</span><span class="p">[</span><span class="s2">&quot;layer_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+                        <span class="s2">&quot;</span><span class="si">{perc}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">perc</span>
+                    <span class="p">)</span>
+                    <span class="n">new_row</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_row</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{perc}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">perc</span><span class="p">)</span>
+                <span class="n">perc_expanded_rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_row</span><span class="p">)</span>
+        <span class="n">perc_expanded_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">perc_expanded_rows</span><span class="p">)</span>
+        <span class="c1"># Combine expanded rows with the rest of the dataframe</span>
+        <span class="n">covar</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">covar</span><span class="p">[</span><span class="o">~</span><span class="n">perc_mask</span><span class="p">],</span> <span class="n">perc_expanded_df</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">month_mask</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">covar</span><span class="p">[</span><span class="s2">&quot;layer_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\{start_month\}&quot;</span><span class="p">)</span>
+            <span class="o">|</span> <span class="n">covar</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\{start_month\}&quot;</span><span class="p">)</span>
+            <span class="o">|</span> <span class="n">covar</span><span class="p">[</span><span class="s2">&quot;layer_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\{end_month\}&quot;</span><span class="p">)</span>
+            <span class="o">|</span> <span class="n">covar</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\{end_month\}&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">month_expanded_rows</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">covar</span><span class="p">[</span><span class="n">month_mask</span><span class="p">]</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">start_month_values</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">sm</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">sm</span> <span class="ow">in</span> <span class="p">(</span>
+                    <span class="n">row</span><span class="p">[</span><span class="s2">&quot;start_month&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;start_month&quot;</span><span class="p">])</span>
+                    <span class="k">else</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+            <span class="n">end_month_values</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">em</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">em</span> <span class="ow">in</span> <span class="p">(</span>
+                    <span class="n">row</span><span class="p">[</span><span class="s2">&quot;end_month&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;end_month&quot;</span><span class="p">])</span>
+                    <span class="k">else</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+            <span class="n">max_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">start_month_values</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">end_month_values</span><span class="p">))</span>
+            <span class="n">start_month_values</span> <span class="o">=</span> <span class="n">start_month_values</span> <span class="ow">or</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">max_len</span>
+            <span class="n">end_month_values</span> <span class="o">=</span> <span class="n">end_month_values</span> <span class="ow">or</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">max_len</span>
+            <span class="k">for</span> <span class="n">start_month</span><span class="p">,</span> <span class="n">end_month</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">start_month_values</span><span class="p">,</span> <span class="n">end_month_values</span><span class="p">):</span>
+                <span class="n">new_row</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">start_month</span><span class="p">:</span>
+                    <span class="n">new_row</span><span class="p">[</span><span class="s2">&quot;layer_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_row</span><span class="p">[</span><span class="s2">&quot;layer_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+                        <span class="s2">&quot;</span><span class="si">{start_month}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">start_month</span>
+                    <span class="p">)</span>
+                    <span class="n">new_row</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_row</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+                        <span class="s2">&quot;</span><span class="si">{start_month}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">start_month</span>
+                    <span class="p">)</span>
+                <span class="k">if</span> <span class="n">end_month</span><span class="p">:</span>
+                    <span class="n">new_row</span><span class="p">[</span><span class="s2">&quot;layer_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_row</span><span class="p">[</span><span class="s2">&quot;layer_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+                        <span class="s2">&quot;</span><span class="si">{end_month}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">end_month</span>
+                    <span class="p">)</span>
+                    <span class="n">new_row</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_row</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{end_month}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">end_month</span><span class="p">)</span>
+                <span class="n">month_expanded_rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_row</span><span class="p">)</span>
+        <span class="n">month_expanded_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">month_expanded_rows</span><span class="p">)</span>
+        <span class="n">covar</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">covar</span><span class="p">[</span><span class="o">~</span><span class="n">month_mask</span><span class="p">],</span> <span class="n">month_expanded_df</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Separate common and temporal data</span>
+        <span class="n">covar_comm</span> <span class="o">=</span> <span class="n">covar</span><span class="p">[</span><span class="n">covar</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;common&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">covar_temp</span> <span class="o">=</span> <span class="n">covar</span><span class="p">[</span><span class="n">covar</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;temporal&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Create the comm part of the catalog</span>
+        <span class="n">url_comm</span> <span class="o">=</span> <span class="n">covar_comm</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;layer_name&quot;</span><span class="p">)[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+        <span class="n">comm</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;common&quot;</span><span class="p">:</span> <span class="p">{</span><span class="n">layer_name</span><span class="p">:</span> <span class="n">path</span> <span class="k">for</span> <span class="n">layer_name</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">url_comm</span><span class="o">.</span><span class="n">items</span><span class="p">()}}</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">calculate_year_placeholders</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">start_year</span><span class="p">,</span> <span class="n">end_year</span><span class="p">,</span> <span class="n">tmp_layer_name</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">end_year</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">end_year</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">float</span> <span class="ow">and</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">end_year</span><span class="p">)):</span>
+                <span class="n">years</span> <span class="o">=</span> <span class="n">start_year</span><span class="o">.</span><span class="n">split</span><span class="p">(</span>
+                    <span class="s2">&quot;,&quot;</span>
+                <span class="p">)</span>  <span class="c1"># years is a list of strings. Ex. 1996,2006,2007,2008,2009,2010,2015,2016,2017,2018,2019,2020</span>
+                <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="p">{</span>
+                        <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">),</span>
+                        <span class="s2">&quot;year_plus_one&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+                        <span class="s2">&quot;year_minus_one&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span>
+                        <span class="s2">&quot;tile_id&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{tile_id}</span><span class="s2">&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;base_path&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{base_path}</span><span class="s2">&quot;</span><span class="p">,</span>
+                    <span class="p">}</span>
+                <span class="c1"># if year is not in the list of years, we propagate the closest year that is available before the given year</span>
+                <span class="n">valid_year</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">years</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">year</span><span class="p">:</span>
+                        <span class="n">valid_year</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">break</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">year</span> <span class="o">!=</span> <span class="n">valid_year</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Year </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2"> not available for layer </span><span class="si">{</span><span class="n">tmp_layer_name</span><span class="si">}</span><span class="s2">, propagating year </span><span class="si">{</span><span class="n">valid_year</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+                <span class="k">return</span> <span class="p">{</span>
+                    <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">valid_year</span><span class="p">),</span>
+                    <span class="s2">&quot;year_plus_one&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">valid_year</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+                    <span class="s2">&quot;year_minus_one&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">valid_year</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span>
+                    <span class="s2">&quot;tile_id&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{tile_id}</span><span class="s2">&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;base_path&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{base_path}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">valid_year</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">start_year</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">end_year</span><span class="p">))</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">year</span> <span class="o">!=</span> <span class="n">valid_year</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Year </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2"> not available for layer </span><span class="si">{</span><span class="n">tmp_layer_name</span><span class="si">}</span><span class="s2">, propagating year </span><span class="si">{</span><span class="n">valid_year</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+                <span class="k">return</span> <span class="p">{</span>
+                    <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">valid_year</span><span class="p">),</span>
+                    <span class="s2">&quot;year_plus_one&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">valid_year</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+                    <span class="s2">&quot;year_minus_one&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">valid_year</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span>
+                    <span class="s2">&quot;tile_id&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{tile_id}</span><span class="s2">&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;base_path&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{base_path}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="p">}</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">calculate_year_feat_name_placeholders</span><span class="p">(</span><span class="n">year</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">),</span>
+                <span class="s2">&quot;year_plus_one&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+                <span class="s2">&quot;year_minus_one&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span>
+                <span class="s2">&quot;tile_id&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{tile_id}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;base_path&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{base_path}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+
+        <span class="c1"># Create the temporal part of the catalog</span>
+        <span class="n">url_temp</span> <span class="o">=</span> <span class="n">covar_temp</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;layer_name&quot;</span><span class="p">)[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+        <span class="n">temporal</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">year_dict</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">layer_name</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">url_temp</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+                <span class="n">year_placeholders</span> <span class="o">=</span> <span class="n">calculate_year_placeholders</span><span class="p">(</span>
+                    <span class="n">year</span><span class="p">,</span>
+                    <span class="n">covar_temp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;start_year&quot;</span><span class="p">],</span>
+                    <span class="n">covar_temp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;end_year&quot;</span><span class="p">],</span>
+                    <span class="n">layer_name</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">replace_group_feat_name</span><span class="p">:</span>
+                    <span class="n">year_feat_name_placeholders</span> <span class="o">=</span> <span class="n">calculate_year_feat_name_placeholders</span><span class="p">(</span>
+                        <span class="n">year</span>
+                    <span class="p">)</span>
+                    <span class="n">layer_name</span> <span class="o">=</span> <span class="n">layer_name</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">year_feat_name_placeholders</span><span class="p">)</span>
+                <span class="n">year_dict</span><span class="p">[</span><span class="n">layer_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">year_placeholders</span><span class="p">)</span>
+            <span class="n">temporal</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span> <span class="o">=</span> <span class="n">year_dict</span>
+        <span class="n">catalog_dict</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">comm</span><span class="p">,</span> <span class="o">**</span><span class="n">temporal</span><span class="p">}</span>
+        <span class="k">for</span> <span class="n">group</span><span class="p">,</span> <span class="n">inner_dict</span> <span class="ow">in</span> <span class="n">catalog_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">layer_name</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">inner_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="n">base_path_tmp</span> <span class="o">=</span> <span class="n">base_path</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                    <span class="n">base_path_tmp</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">base_path</span><span class="p">)</span>
+                <span class="n">catalog_dict</span><span class="p">[</span><span class="n">group</span><span class="p">][</span><span class="n">layer_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">base_path</span><span class="o">=</span><span class="n">base_path_tmp</span><span class="p">,</span> <span class="n">tile_id</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{tile_id}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{dt}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">catalog_dict</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_out_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">json_out_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">json_out_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+            <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="o">.</span><span class="n">difference</span><span class="p">([</span><span class="s2">&quot;common&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">difference</span><span class="p">([</span><span class="s2">&quot;otf&quot;</span><span class="p">]))</span>
+        <span class="p">)</span>  <span class="c1"># by default don&#39;t return &#39;common&#39; nor &#39;otf&#39; group</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">groups</span><span class="p">):</span>  <span class="c1"># but, if there is only group &#39;common&#39;, return it.</span>
+            <span class="n">groups</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;common&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">groups</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">DataCatalog</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_size</span><span class="p">))</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_feature_names</span><span class="p">(</span><span class="n">catalog_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Make a set of feature names</span>
+
+<span class="sd">        :param catalog_dict: dict-of-dicts</span>
+<span class="sd">        :type catalog_dict: Dict</span>
+<span class="sd">        :return: Set of unique feature names</span>
+<span class="sd">        :rtype: {str}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="n">layer_name</span>
+                <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">inner_dict</span> <span class="ow">in</span> <span class="n">catalog_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">layer_name</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">inner_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_group_and_feature_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_idx</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">group_name</span><span class="p">,</span> <span class="n">features</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">feature_name</span><span class="p">,</span> <span class="n">feature_info</span> <span class="ow">in</span> <span class="n">features</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">feature_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;idx&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">target_idx</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">group_name</span><span class="p">,</span> <span class="n">feature_name</span>
+        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_feature_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_feature_names</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">paths</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="s2">&quot;otf&quot;</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">f</span><span class="p">][</span><span class="s2">&quot;path&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;/whale&quot;</span><span class="p">):</span>
+                    <span class="n">paths</span> <span class="o">+=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">f</span><span class="p">][</span><span class="s2">&quot;path&quot;</span><span class="p">]]</span>
+                    <span class="n">idx</span> <span class="o">+=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">f</span><span class="p">][</span><span class="s2">&quot;idx&quot;</span><span class="p">]]</span>
+                    <span class="n">names</span> <span class="o">+=</span> <span class="p">[</span><span class="n">f</span><span class="p">]</span>
+        <span class="c1"># modify paths of non VRT files\</span>
+        <span class="n">paths</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="sa">f</span><span class="s2">&quot;/vsicurl/</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">if</span> <span class="n">p</span>
+            <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;http&quot;</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="n">p</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;vrt&quot;</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="n">p</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;/vsicurl/&quot;</span><span class="p">)</span>
+            <span class="k">else</span> <span class="n">p</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">paths</span>
+        <span class="p">]</span>
+        <span class="k">return</span> <span class="n">paths</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">names</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_unrolled_catalog</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">names</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">idx</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span>
+                <span class="n">paths</span> <span class="o">+=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">f</span><span class="p">][</span><span class="s2">&quot;path&quot;</span><span class="p">]]</span>
+                <span class="n">idx</span> <span class="o">+=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">f</span><span class="p">][</span><span class="s2">&quot;idx&quot;</span><span class="p">]]</span>
+                <span class="n">names</span> <span class="o">+=</span> <span class="p">[</span><span class="n">f</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">names</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">idx</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_whales</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="n">whale_paths</span><span class="p">,</span> <span class="n">whale_keys</span><span class="p">,</span> <span class="n">whale_layer_names</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="s2">&quot;otf&quot;</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">f</span><span class="p">][</span><span class="s2">&quot;path&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;/whale&quot;</span><span class="p">):</span>
+                    <span class="n">whale_paths</span> <span class="o">+=</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">f</span><span class="p">][</span><span class="s2">&quot;path&quot;</span><span class="p">]]</span>
+                    <span class="n">whale_layer_names</span> <span class="o">+=</span> <span class="p">[</span><span class="n">f</span><span class="p">]</span>
+                    <span class="n">whale_keys</span> <span class="o">+=</span> <span class="p">[</span><span class="n">k</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">whale_paths</span><span class="p">,</span> <span class="n">whale_keys</span><span class="p">,</span> <span class="n">whale_layer_names</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_whales</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_whales</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature_names</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">groups</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_groups</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid `groups` parameter. Expecting a list.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="s2">&quot;common&quot;</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>  <span class="c1"># include &#39;common&#39; group by default</span>
+            <span class="n">groups</span> <span class="o">=</span> <span class="n">groups</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;common&quot;</span><span class="p">]</span>
+        <span class="n">old_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_size</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">old_data</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">feature_names</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">old_data</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span>
+                        <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">f</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                            <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">old_data</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">f</span><span class="p">][</span><span class="s2">&quot;path&quot;</span><span class="p">],</span>
+                            <span class="s2">&quot;idx&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_size</span><span class="p">,</span>
+                        <span class="p">}</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">data_size</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Group </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> is missing from original catalog, skipping it&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_expand_whales_dependencies</span><span class="p">(</span><span class="n">old_data</span><span class="p">)</span>
+        <span class="n">missing_features_names</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">feature</span>
+            <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">feature_names</span>
+            <span class="k">if</span> <span class="n">feature</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">())</span>
+        <span class="p">]</span>
+        <span class="k">for</span> <span class="n">missing_feat_feature</span> <span class="ow">in</span> <span class="n">missing_features_names</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;WARNING: Feature </span><span class="si">{</span><span class="n">missing_feat_feature</span><span class="si">}</span><span class="s2"> is missing in the original catalog, adding is in the otf (on the fly) common group&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">missing_features_names</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_otf_features</span><span class="p">(</span><span class="n">missing_features_names</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_otf_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">otf_features</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s2">&quot;otf&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;otf&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">otf_feature</span> <span class="ow">in</span> <span class="n">otf_features</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;otf&quot;</span><span class="p">][</span><span class="n">otf_feature</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;idx&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_size</span><span class="p">}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_size</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">expand_whales_dependencies</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">reference_catalog_data</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">data_size</span><span class="p">):</span>
+        <span class="n">whale_paths</span><span class="p">,</span> <span class="n">groups</span><span class="p">,</span> <span class="n">whale_layer_names</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_whales</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">whale_path</span><span class="p">,</span> <span class="n">whale_layer_name</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
+            <span class="nb">zip</span><span class="p">(</span><span class="n">whale_paths</span><span class="p">,</span> <span class="n">whale_layer_names</span><span class="p">)</span>
+        <span class="p">):</span>
+            <span class="n">dep_names</span><span class="p">,</span> <span class="n">dep_paths</span><span class="p">,</span> <span class="n">dep_exec_orders</span><span class="p">,</span> <span class="n">dep_keys</span> <span class="o">=</span> <span class="n">get_whale_dependencies</span><span class="p">(</span>
+                <span class="n">whale_path</span><span class="p">,</span> <span class="n">groups</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">reference_catalog_data</span><span class="p">,</span> <span class="n">whale_layer_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">dep_name</span><span class="p">,</span> <span class="n">dep_path</span><span class="p">,</span> <span class="n">dep_exec_order</span><span class="p">,</span> <span class="n">dep_key</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+                <span class="n">dep_names</span><span class="p">,</span> <span class="n">dep_paths</span><span class="p">,</span> <span class="n">dep_exec_orders</span><span class="p">,</span> <span class="n">dep_keys</span>
+            <span class="p">):</span>
+                <span class="k">if</span> <span class="n">dep_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="n">dep_key</span><span class="p">]:</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">dep_key</span><span class="p">][</span><span class="n">dep_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">dep_path</span><span class="p">,</span>
+                        <span class="s2">&quot;idx&quot;</span><span class="p">:</span> <span class="n">data_size</span><span class="p">,</span>
+                        <span class="s2">&quot;exec_order&quot;</span><span class="p">:</span> <span class="n">dep_exec_order</span><span class="p">,</span>
+                    <span class="p">}</span>
+                    <span class="n">data_size</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">dep_name</span> <span class="o">==</span> <span class="n">whale_layer_name</span><span class="p">:</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">dep_key</span><span class="p">][</span><span class="n">dep_name</span><span class="p">][</span><span class="s2">&quot;exec_order&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dep_exec_order</span>
+        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">data_size</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_expand_whales_dependencies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reference_catalog_data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">expand_whales_dependencies</span><span class="p">(</span>
+            <span class="n">reference_catalog_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_size</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_otf_idx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">otf_idx</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="s2">&quot;otf&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;otf&quot;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">f</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">otf_idx</span><span class="p">:</span>
+                    <span class="n">otf_idx</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">otf_idx</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">+=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;otf&quot;</span><span class="p">][</span><span class="n">f</span><span class="p">][</span><span class="s2">&quot;idx&quot;</span><span class="p">]]</span>
+        <span class="k">return</span> <span class="n">otf_idx</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_covs_idx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">covs_lst</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_groups</span><span class="p">()</span>
+        <span class="n">covs_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">covs_lst</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">groups</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">groups</span><span class="p">)):</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">covs_lst</span><span class="p">)):</span>
+                <span class="n">c</span> <span class="o">=</span> <span class="n">covs_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="k">if</span> <span class="s2">&quot;common&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="ow">and</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;common&quot;</span><span class="p">]:</span>
+                    <span class="n">covs_idx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;common&quot;</span><span class="p">][</span><span class="n">c</span><span class="p">][</span><span class="s2">&quot;idx&quot;</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span>
+                    <span class="n">covs_idx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">c</span><span class="p">][</span><span class="s2">&quot;idx&quot;</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">covs_idx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;otf&quot;</span><span class="p">][</span><span class="n">c</span><span class="p">][</span><span class="s2">&quot;idx&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">covs_idx</span></div>
+
+
+
+<span class="c1">#</span>
+<div class="viewcode-block" id="print_catalog_statistics">
+<a class="viewcode-back" href="../../_autosummary/skmap.catalog.print_catalog_statistics.html#skmap.catalog.print_catalog_statistics">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_catalog_statistics</span><span class="p">(</span><span class="n">catalog</span><span class="p">:</span> <span class="n">DataCatalog</span><span class="p">):</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">catalog</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">groups</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;catalog groups: </span><span class="si">{</span><span class="n">groups</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- rasters to read: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">catalog</span><span class="o">.</span><span class="n">get_paths</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- whales: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">catalog</span><span class="o">.</span><span class="n">_get_whales</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- on-the-fly features: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">catalog</span><span class="o">.</span><span class="n">get_otf_idx</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">catalog</span><span class="o">.</span><span class="n">get_otf_idx</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">otf_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">catalog</span><span class="o">.</span><span class="n">get_otf_idx</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">otf_list</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- otf list: </span><span class="si">{</span><span class="n">otf_list</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span></div>
+
+
+
+<span class="c1">#</span>
+
+
+<div class="viewcode-block" id="get_whale_dependencies">
+<a class="viewcode-back" href="../../_autosummary/skmap.catalog.get_whale_dependencies.html#skmap.catalog.get_whale_dependencies">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_whale_dependencies</span><span class="p">(</span><span class="n">whale</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">main_catalog</span><span class="p">,</span> <span class="n">whale_layer_name</span><span class="p">):</span>
+    <span class="n">func_name</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="n">parse_template_whale</span><span class="p">(</span><span class="n">whale</span><span class="p">)</span>
+    <span class="n">dep_tags</span><span class="p">,</span> <span class="n">dep_names</span><span class="p">,</span> <span class="n">dep_paths</span><span class="p">,</span> <span class="n">dep_exec_orders</span><span class="p">,</span> <span class="n">dep_keys</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">func_name</span> <span class="o">==</span> <span class="s2">&quot;percentileAggregation&quot;</span><span class="p">:</span>
+        <span class="n">tag</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;entry_template&quot;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">dt</span> <span class="ow">in</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;dt&quot;</span><span class="p">]:</span>
+            <span class="n">dep_tags</span> <span class="o">+=</span> <span class="p">[</span><span class="n">tag</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">)]</span>
+    <span class="k">elif</span> <span class="n">func_name</span> <span class="o">==</span> <span class="s2">&quot;computeNormalizedDifference&quot;</span><span class="p">:</span>
+        <span class="n">dep_tags</span> <span class="o">+=</span> <span class="p">[</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;idx_plus&quot;</span><span class="p">]]</span>
+        <span class="n">dep_tags</span> <span class="o">+=</span> <span class="p">[</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;idx_minus&quot;</span><span class="p">]]</span>
+    <span class="k">elif</span> <span class="n">func_name</span> <span class="o">==</span> <span class="s2">&quot;computeSavi&quot;</span><span class="p">:</span>
+        <span class="n">dep_tags</span> <span class="o">+=</span> <span class="p">[</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;idx_red&quot;</span><span class="p">]]</span>
+        <span class="n">dep_tags</span> <span class="o">+=</span> <span class="p">[</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;idx_nir&quot;</span><span class="p">]]</span>
+    <span class="k">elif</span> <span class="n">func_name</span> <span class="o">==</span> <span class="s2">&quot;computeGeometricTemperature&quot;</span><span class="p">:</span>
+        <span class="n">dep_tags</span> <span class="o">+=</span> <span class="p">[</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;idx_latitude&quot;</span><span class="p">]]</span>
+        <span class="n">dep_tags</span> <span class="o">+=</span> <span class="p">[</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;idx_elevation&quot;</span><span class="p">]]</span>
+    <span class="k">elif</span> <span class="n">func_name</span> <span class="o">==</span> <span class="s2">&quot;extractIndicator&quot;</span><span class="p">:</span>
+        <span class="n">dep_tags</span> <span class="o">+=</span> <span class="p">[</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;idx_layer&quot;</span><span class="p">]]</span>
+    <span class="k">for</span> <span class="n">dep_tag</span> <span class="ow">in</span> <span class="n">dep_tags</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">dep_tag</span> <span class="ow">in</span> <span class="n">main_catalog</span><span class="p">[</span><span class="n">key</span><span class="p">]:</span>
+            <span class="n">dep_path</span> <span class="o">=</span> <span class="n">main_catalog</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">dep_tag</span><span class="p">][</span><span class="s2">&quot;path&quot;</span><span class="p">]</span>
+            <span class="n">dep_key</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dep_path</span> <span class="o">=</span> <span class="n">main_catalog</span><span class="p">[</span><span class="s2">&quot;common&quot;</span><span class="p">][</span><span class="n">dep_tag</span><span class="p">][</span><span class="s2">&quot;path&quot;</span><span class="p">]</span>
+            <span class="n">dep_key</span> <span class="o">=</span> <span class="s2">&quot;common&quot;</span>
+        <span class="k">if</span> <span class="n">dep_path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;/whale&quot;</span><span class="p">):</span>
+            <span class="n">rec_dep_names</span><span class="p">,</span> <span class="n">rec_dep_paths</span><span class="p">,</span> <span class="n">rec_dep_exec_orders</span><span class="p">,</span> <span class="n">rec_dep_keys</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">get_whale_dependencies</span><span class="p">(</span><span class="n">dep_path</span><span class="p">,</span> <span class="n">dep_key</span><span class="p">,</span> <span class="n">main_catalog</span><span class="p">,</span> <span class="n">dep_tag</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">dep_paths</span> <span class="o">+=</span> <span class="n">rec_dep_paths</span>
+            <span class="n">dep_names</span> <span class="o">+=</span> <span class="n">rec_dep_names</span>
+            <span class="n">dep_exec_orders</span> <span class="o">+=</span> <span class="n">rec_dep_exec_orders</span>
+            <span class="n">dep_keys</span> <span class="o">+=</span> <span class="n">rec_dep_keys</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dep_paths</span> <span class="o">+=</span> <span class="p">[</span><span class="n">dep_path</span><span class="p">]</span>
+            <span class="n">dep_names</span> <span class="o">+=</span> <span class="p">[</span><span class="n">dep_tag</span><span class="p">]</span>
+            <span class="n">dep_exec_orders</span> <span class="o">+=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">dep_keys</span> <span class="o">+=</span> <span class="p">[</span><span class="n">dep_key</span><span class="p">]</span>
+    <span class="n">dep_paths</span> <span class="o">+=</span> <span class="p">[</span><span class="n">whale</span><span class="p">]</span>
+    <span class="n">dep_names</span> <span class="o">+=</span> <span class="p">[</span><span class="n">whale_layer_name</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">dep_exec_orders</span><span class="p">:</span>
+        <span class="n">dep_exec_orders</span> <span class="o">+=</span> <span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="n">dep_exec_orders</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dep_exec_orders</span> <span class="o">+=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">dep_keys</span> <span class="o">+=</span> <span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">dep_names</span><span class="p">,</span> <span class="n">dep_paths</span><span class="p">,</span> <span class="n">dep_exec_orders</span><span class="p">,</span> <span class="n">dep_keys</span></div>
+
+
+
+<div class="viewcode-block" id="parse_template_whale">
+<a class="viewcode-back" href="../../_autosummary/skmap.catalog.parse_template_whale.html#skmap.catalog.parse_template_whale">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_template_whale</span><span class="p">(</span><span class="n">whale</span><span class="p">):</span>
+    <span class="n">func_name_match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;/whale/([^?]+)&quot;</span><span class="p">,</span> <span class="n">whale</span><span class="p">)</span>
+    <span class="n">func_name</span> <span class="o">=</span> <span class="n">func_name_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">func_name_match</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="n">query_params_string</span> <span class="o">=</span> <span class="n">whale</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">if</span> <span class="n">query_params_string</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">query_params_string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;&amp;&quot;</span><span class="p">):</span>
+            <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+            <span class="c1"># Split by commas to handle lists</span>
+            <span class="k">if</span> <span class="s2">&quot;,&quot;</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+                <span class="n">params</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">params</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="n">func_name</span><span class="p">,</span> <span class="n">params</span></div>
+
+
+
+<div class="viewcode-block" id="run_whales">
+<a class="viewcode-back" href="../../_autosummary/skmap.catalog.run_whales.html#skmap.catalog.run_whales">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_whales</span><span class="p">(</span><span class="n">catalog</span><span class="p">:</span> <span class="n">DataCatalog</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">n_threads</span><span class="p">,</span> <span class="n">lat_info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># Computing on the fly covariates</span>
+    <span class="n">whale_paths</span><span class="p">,</span> <span class="n">whale_keys</span><span class="p">,</span> <span class="n">whale_names</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">_get_whales</span><span class="p">()</span>
+    <span class="n">max_exec_order</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">whale_key</span><span class="p">,</span> <span class="n">whale_name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">whale_keys</span><span class="p">,</span> <span class="n">whale_names</span><span class="p">):</span>
+        <span class="n">max_exec_order</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+            <span class="n">max_exec_order</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">catalog</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">whale_key</span><span class="p">][</span><span class="n">whale_name</span><span class="p">][</span><span class="s2">&quot;exec_order&quot;</span><span class="p">])</span>
+        <span class="p">)</span>
+    <span class="k">for</span> <span class="n">exec_order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_exec_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">whale_path</span><span class="p">,</span> <span class="n">whale_key</span><span class="p">,</span> <span class="n">whale_name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+            <span class="n">whale_paths</span><span class="p">,</span> <span class="n">whale_keys</span><span class="p">,</span> <span class="n">whale_names</span>
+        <span class="p">):</span>
+            <span class="k">if</span> <span class="n">exec_order</span> <span class="o">!=</span> <span class="nb">int</span><span class="p">(</span><span class="n">catalog</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">whale_key</span><span class="p">][</span><span class="n">whale_name</span><span class="p">][</span><span class="s2">&quot;exec_order&quot;</span><span class="p">]):</span>
+                <span class="k">continue</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">func_name</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="n">parse_template_whale</span><span class="p">(</span><span class="n">whale_path</span><span class="p">)</span>
+                <span class="n">whale_data_idx</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">whale_key</span><span class="p">][</span><span class="n">whale_name</span><span class="p">][</span><span class="s2">&quot;idx&quot;</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">func_name</span> <span class="o">==</span> <span class="s2">&quot;percentileAggregation&quot;</span><span class="p">:</span>
+                    <span class="n">tag</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;entry_template&quot;</span><span class="p">]</span>
+                    <span class="n">in_idxs</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="k">for</span> <span class="n">dt</span> <span class="ow">in</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;dt&quot;</span><span class="p">]:</span>
+                        <span class="n">in_idxs</span> <span class="o">+=</span> <span class="p">[</span><span class="n">catalog</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">whale_key</span><span class="p">][</span><span class="n">tag</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">)][</span><span class="s2">&quot;idx&quot;</span><span class="p">]]</span>
+                    <span class="c1"># @FIXME with this setting we do the sorting for percentiles N times for each used percentile</span>
+                    <span class="c1"># @FIXME implement the percentiles without the need of transposition</span>
+                    <span class="n">array_sb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span>
+                        <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">in_idxs</span><span class="p">),</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span>
+                    <span class="p">)</span>
+                    <span class="n">array_sb_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span>
+                        <span class="p">(</span><span class="n">array_sb</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">array_sb</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span>
+                    <span class="p">)</span>
+                    <span class="n">array_pct_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">array_sb</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+                    <span class="n">sb</span><span class="o">.</span><span class="n">extractArrayRows</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">n_threads</span><span class="p">,</span> <span class="n">array_sb</span><span class="p">,</span> <span class="n">in_idxs</span><span class="p">)</span>
+                    <span class="n">sb</span><span class="o">.</span><span class="n">transposeArray</span><span class="p">(</span><span class="n">array_sb</span><span class="p">,</span> <span class="n">n_threads</span><span class="p">,</span> <span class="n">array_sb_t</span><span class="p">)</span>
+                    <span class="n">sb</span><span class="o">.</span><span class="n">computePercentiles</span><span class="p">(</span>
+                        <span class="n">array_sb_t</span><span class="p">,</span>
+                        <span class="n">n_threads</span><span class="p">,</span>
+                        <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">in_idxs</span><span class="p">)),</span>
+                        <span class="n">array_pct_t</span><span class="p">,</span>
+                        <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                        <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;percentile&quot;</span><span class="p">])],</span>
+                    <span class="p">)</span>
+                    <span class="n">array</span><span class="p">[</span><span class="n">whale_data_idx</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">array_pct_t</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">func_name</span> <span class="o">==</span> <span class="s2">&quot;computeNormalizedDifference&quot;</span><span class="p">:</span>
+                    <span class="n">sb</span><span class="o">.</span><span class="n">computeNormalizedDifference</span><span class="p">(</span>
+                        <span class="n">array</span><span class="p">,</span>
+                        <span class="n">n_threads</span><span class="p">,</span>
+                        <span class="p">[</span><span class="n">catalog</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">whale_key</span><span class="p">][</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;idx_plus&quot;</span><span class="p">]][</span><span class="s2">&quot;idx&quot;</span><span class="p">]],</span>
+                        <span class="p">[</span><span class="n">catalog</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">whale_key</span><span class="p">][</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;idx_minus&quot;</span><span class="p">]][</span><span class="s2">&quot;idx&quot;</span><span class="p">]],</span>
+                        <span class="p">[</span><span class="n">whale_data_idx</span><span class="p">],</span>
+                        <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;scale_plus&quot;</span><span class="p">]),</span>
+                        <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;scale_minus&quot;</span><span class="p">]),</span>
+                        <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;scale_result&quot;</span><span class="p">]),</span>
+                        <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;offset_result&quot;</span><span class="p">]),</span>
+                        <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;clip&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;clip&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">])],</span>
+                    <span class="p">)</span>
+                <span class="k">elif</span> <span class="n">func_name</span> <span class="o">==</span> <span class="s2">&quot;computeSavi&quot;</span><span class="p">:</span>
+                    <span class="n">sb</span><span class="o">.</span><span class="n">computeSavi</span><span class="p">(</span>
+                        <span class="n">array</span><span class="p">,</span>
+                        <span class="n">n_threads</span><span class="p">,</span>
+                        <span class="p">[</span><span class="n">catalog</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">whale_key</span><span class="p">][</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;idx_red&quot;</span><span class="p">]][</span><span class="s2">&quot;idx&quot;</span><span class="p">]],</span>
+                        <span class="p">[</span><span class="n">catalog</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">whale_key</span><span class="p">][</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;idx_nir&quot;</span><span class="p">]][</span><span class="s2">&quot;idx&quot;</span><span class="p">]],</span>
+                        <span class="p">[</span><span class="n">whale_data_idx</span><span class="p">],</span>
+                        <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;scale_red&quot;</span><span class="p">]),</span>
+                        <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;scale_nir&quot;</span><span class="p">]),</span>
+                        <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;scale_result&quot;</span><span class="p">]),</span>
+                        <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;offset_result&quot;</span><span class="p">]),</span>
+                        <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;clip&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;clip&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">])],</span>
+                    <span class="p">)</span>
+                <span class="k">elif</span> <span class="n">func_name</span> <span class="o">==</span> <span class="s2">&quot;extractIndicator&quot;</span><span class="p">:</span>
+                    <span class="n">array</span><span class="p">[</span><span class="n">whale_data_idx</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">array</span><span class="p">[</span><span class="n">catalog</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">whale_key</span><span class="p">][</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;idx_layer&quot;</span><span class="p">]][</span><span class="s2">&quot;idx&quot;</span><span class="p">],</span> <span class="p">:]</span>
+                        <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;code&quot;</span><span class="p">])</span>
+                    <span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">func_name</span> <span class="o">==</span> <span class="s2">&quot;getLatitude&quot;</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="p">(</span>
+                        <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lat_info</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+                        <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">lat_info</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+                        <span class="ow">and</span> <span class="n">lat_info</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="p">):</span>
+                        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                            <span class="s2">&quot;Information on how to get the latitude needs to be a numpy vector&quot;</span>
+                        <span class="p">)</span>
+                    <span class="k">elif</span> <span class="p">(</span>
+                        <span class="nb">isinstance</span><span class="p">(</span><span class="n">lat_info</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+                        <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">lat_info</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+                        <span class="ow">and</span> <span class="n">lat_info</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="p">):</span>
+                        <span class="n">array</span><span class="p">[</span><span class="n">whale_data_idx</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">lat_info</span>
+                <span class="k">elif</span> <span class="n">func_name</span> <span class="o">==</span> <span class="s2">&quot;computeGeometricTemperature&quot;</span><span class="p">:</span>
+                    <span class="n">day_of_year</span> <span class="o">=</span> <span class="n">mmdd_to_doy</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;day_of_year_mmdd&quot;</span><span class="p">]))</span>
+                    <span class="k">if</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;idx_latitude&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">catalog</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">whale_key</span><span class="p">]:</span>
+                        <span class="n">latitude</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span>
+                            <span class="n">catalog</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">whale_key</span><span class="p">][</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;idx_latitude&quot;</span><span class="p">]][</span><span class="s2">&quot;idx&quot;</span><span class="p">],</span> <span class="p">:</span>
+                        <span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">latitude</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span>
+                            <span class="n">catalog</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;common&quot;</span><span class="p">][</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;idx_latitude&quot;</span><span class="p">]][</span><span class="s2">&quot;idx&quot;</span><span class="p">],</span> <span class="p">:</span>
+                        <span class="p">]</span>
+                    <span class="k">if</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;idx_elevation&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">catalog</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">whale_key</span><span class="p">]:</span>
+                        <span class="n">elevation</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span>
+                            <span class="n">catalog</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">whale_key</span><span class="p">][</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;idx_elevation&quot;</span><span class="p">]][</span><span class="s2">&quot;idx&quot;</span><span class="p">],</span> <span class="p">:</span>
+                        <span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">elevation</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span>
+                            <span class="n">catalog</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;common&quot;</span><span class="p">][</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;idx_elevation&quot;</span><span class="p">]][</span><span class="s2">&quot;idx&quot;</span><span class="p">],</span> <span class="p">:</span>
+                        <span class="p">]</span>
+                    <span class="n">sb</span><span class="o">.</span><span class="n">computeGeometricTemperature</span><span class="p">(</span>
+                        <span class="n">array</span><span class="p">,</span>
+                        <span class="n">n_threads</span><span class="p">,</span>
+                        <span class="n">latitude</span><span class="p">,</span>
+                        <span class="n">elevation</span><span class="p">,</span>
+                        <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;elevation_scaling&quot;</span><span class="p">]),</span>
+                        <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]),</span>
+                        <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]),</span>
+                        <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;result_scaling&quot;</span><span class="p">]),</span>
+                        <span class="p">[</span><span class="n">whale_data_idx</span><span class="p">],</span>
+                        <span class="p">[</span><span class="n">day_of_year</span><span class="p">],</span>
+                    <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The whale function </span><span class="si">{</span><span class="n">func_name</span><span class="si">}</span><span class="s2"> is not available&quot;</span><span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2019-2021, Geo-harmonizer project team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+skmap.modeler.PredictedProbs
+============================
+
+.. currentmodule:: skmap.modeler
+
+.. autoclass:: PredictedProbs
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~PredictedProbs.compute_class
+      ~PredictedProbs.compute_kl_divergence
+      ~PredictedProbs.save_class_layer
+      ~PredictedProbs.save_kl_divergence_layer
+      ~PredictedProbs.save_probs_layers
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PredictedProbs.predicted_class
+      ~PredictedProbs.predicted_probs
+   
+   

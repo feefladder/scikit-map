@@ -1,0 +1,25 @@
+skmap.parallel.blocks.RasterBlockAggregator
+===========================================
+
+.. currentmodule:: skmap.parallel.blocks
+
+.. autoclass:: RasterBlockAggregator
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~RasterBlockAggregator.aggregate
+   
+   
+
+   
+   
+   

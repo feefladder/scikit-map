@@ -1,0 +1,37 @@
+skmap.catalog.DataCatalog
+=========================
+
+.. currentmodule:: skmap.catalog
+
+.. autoclass:: DataCatalog
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~DataCatalog.add_otf_features
+      ~DataCatalog.copy
+      ~DataCatalog.create_catalog
+      ~DataCatalog.expand_whales_dependencies
+      ~DataCatalog.find_group_and_feature_by_index
+      ~DataCatalog.get_feature_names
+      ~DataCatalog.get_groups
+      ~DataCatalog.get_otf_idx
+      ~DataCatalog.get_paths
+      ~DataCatalog.get_unrolled_catalog
+      ~DataCatalog.get_whales
+      ~DataCatalog.query
+      ~DataCatalog.save_json
+   
+   
+
+   
+   
+   

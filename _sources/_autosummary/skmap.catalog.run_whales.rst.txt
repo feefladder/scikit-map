@@ -1,0 +1,6 @@
+skmap.catalog.run\_whales
+=========================
+
+.. currentmodule:: skmap.catalog
+
+.. autofunction:: run_whales
