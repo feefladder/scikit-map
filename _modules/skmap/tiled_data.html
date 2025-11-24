@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>skmap.tiled_data &#8212; skmap library 0.7.3 documentation</title>
+    <title>skmap.tiled_data &#8212; skmap library 0.9.1 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=c98573da"></script>
+    <script src="../../_static/documentation_options.js?v=9dc39874"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -50,7 +50,7 @@
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.7" />
+  <meta name="docsearch:version" content="0.9" />
   </head>
   
   
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/print_logo.svg" class="logo__image only-light" alt="skmap library 0.7.3 documentation - Home"/>
-    <img src="../../_static/print_logo_white.svg" class="logo__image only-dark pst-js-only" alt="skmap library 0.7.3 documentation - Home"/>
+    <img src="../../_static/print_logo.svg" class="logo__image only-light" alt="skmap library 0.9.1 documentation - Home"/>
+    <img src="../../_static/print_logo_white.svg" class="logo__image only-dark pst-js-only" alt="skmap library 0.9.1 documentation - Home"/>
   
   
 </a></div>
@@ -175,6 +175,13 @@
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
 <li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../cpp_api.html">
+    C++ API
+  </a>
+</li>
+
+
+<li class=" ">
   <a class="nav-link dropdown-item nav-external" href="http://opendatascience.eu">
     Open Data Science Europe
   </a>
@@ -221,7 +228,7 @@
           
           
           
-          <a href="https://gitlab.com/geoharmonizer_inea/skmap" title="GitLab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-codeberg fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/openlandmap/scikit-map" title="GitLab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-code-branch fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitLab</span></a>
         </li>
 </ul></div>
@@ -306,6 +313,13 @@
 
 
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../cpp_api.html">
+    C++ API
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-external" href="http://opendatascience.eu">
     Open Data Science Europe
   </a>
@@ -340,7 +354,7 @@
           
           
           
-          <a href="https://gitlab.com/geoharmonizer_inea/skmap" title="GitLab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-codeberg fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/openlandmap/scikit-map" title="GitLab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-code-branch fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitLab</span></a>
         </li>
 </ul></div>
@@ -466,7 +480,12 @@
 <div class="viewcode-block" id="warp_tile">
 <a class="viewcode-back" href="../../_autosummary/skmap.tiled_data.warp_tile.html#skmap.tiled_data.warp_tile">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">warp_tile</span><span class="p">(</span><span class="n">tile_file</span><span class="p">,</span> <span class="n">mosaic_paths</span><span class="p">,</span> <span class="n">n_pix</span><span class="p">,</span> <span class="n">resample</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;no docs&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    no docs</span>
+
+<span class="sd">    .. deprecated:: 0.10.0</span>
+<span class="sd">        Use GDAL vrt&#39;s</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">warp_data</span> <span class="o">=</span> <span class="n">sb_vec</span><span class="p">(</span>
         <span class="n">n_pix</span><span class="p">,</span>
     <span class="p">)</span>
@@ -529,8 +548,8 @@
 <div class="viewcode-block" id="TiledData">
 <a class="viewcode-back" href="../../_autosummary/skmap.tiled_data.TiledData.html#skmap.tiled_data.TiledData">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">TiledData</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for `TiledDataLoader` and `TiledDataExporter`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for `TiledDataLoader` and `TiledDataExporter`&quot;&quot;&quot;</span>
+
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">n_layers</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -592,6 +611,7 @@
 <span class="sd">    :param n_threads_read: Number of threads for GDAL, defaults to n_threads</span>
 <span class="sd">    :type n_threads_read: int, optional</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">catalog</span><span class="p">:</span> <span class="n">DataCatalog</span><span class="p">,</span>
@@ -611,7 +631,7 @@
 <span class="sd">        :param catalog: _description_</span>
 <span class="sd">        :type catalog: DataCatalog</span>
 <span class="sd">        :param mask_template_path: _description_</span>
-<span class="sd">        </span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span> <span class="o">=</span> <span class="n">catalog</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mask_template_path</span> <span class="o">=</span> <span class="n">mask_template_path</span>

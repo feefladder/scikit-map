@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>skmap.overlay &#8212; skmap library 0.7.3 documentation</title>
+    <title>skmap.overlay &#8212; skmap library 0.9.1 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=c98573da"></script>
+    <script src="../../_static/documentation_options.js?v=9dc39874"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -50,7 +50,7 @@
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.7" />
+  <meta name="docsearch:version" content="0.9" />
   </head>
   
   
@@ -116,8 +116,8 @@
       
     
     
-    <img src="../../_static/print_logo.svg" class="logo__image only-light" alt="skmap library 0.7.3 documentation - Home"/>
-    <img src="../../_static/print_logo_white.svg" class="logo__image only-dark pst-js-only" alt="skmap library 0.7.3 documentation - Home"/>
+    <img src="../../_static/print_logo.svg" class="logo__image only-light" alt="skmap library 0.9.1 documentation - Home"/>
+    <img src="../../_static/print_logo_white.svg" class="logo__image only-dark pst-js-only" alt="skmap library 0.9.1 documentation - Home"/>
   
   
 </a></div>
@@ -175,6 +175,13 @@
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
 <li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../cpp_api.html">
+    C++ API
+  </a>
+</li>
+
+
+<li class=" ">
   <a class="nav-link dropdown-item nav-external" href="http://opendatascience.eu">
     Open Data Science Europe
   </a>
@@ -221,7 +228,7 @@
           
           
           
-          <a href="https://gitlab.com/geoharmonizer_inea/skmap" title="GitLab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-codeberg fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/openlandmap/scikit-map" title="GitLab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-code-branch fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitLab</span></a>
         </li>
 </ul></div>
@@ -306,6 +313,13 @@
 
 
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../cpp_api.html">
+    C++ API
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-external" href="http://opendatascience.eu">
     Open Data Science Europe
   </a>
@@ -340,7 +354,7 @@
           
           
           
-          <a href="https://gitlab.com/geoharmonizer_inea/skmap" title="GitLab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-codeberg fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/openlandmap/scikit-map" title="GitLab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-code-branch fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitLab</span></a>
         </li>
 </ul></div>
@@ -675,8 +689,6 @@
 <span class="sd">    :param n_threads: Number of CPU cores to be used in parallel. By default all cores</span>
 <span class="sd">        are used.</span>
 <span class="sd">    :param verbose: Use ``True`` to print the overlay progress.</span>
-
-
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -795,10 +807,12 @@
 <span class="sd">        :rtype: geopandas.GeoDataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">feats_names</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">feats_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="o">.</span><span class="n">get_unrolled_catalog</span><span class="p">()</span>
+
+        <span class="c1"># FIXME: this should be in a unit test</span>
         <span class="k">assert</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="o">.</span><span class="n">data_size</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()))</span> <span class="o">&amp;</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="o">.</span><span class="n">data_size</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">feats_names</span><span class="p">)</span>
         <span class="p">),</span> <span class="p">(</span>
-            <span class="s2">&quot;Catalog data size should coincide wiht the number of features, something went wrong&quot;</span>
+            <span class="s2">&quot;Catalog data size should coincide with the number of features, something went wrong&quot;</span>
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">ordered_feats_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">feats_idx</span><span class="p">,</span> <span class="n">feats_names</span><span class="p">))]</span>
@@ -835,7 +849,19 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pts_out</span></div>
 
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">read_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gdal_opts</span><span class="p">,</span> <span class="n">max_ram_mb</span><span class="p">):</span>
+<div class="viewcode-block" id="SpaceOverlay.read_data">
+<a class="viewcode-back" href="../../_autosummary/skmap.overlay.SpaceOverlay.html#skmap.overlay.SpaceOverlay.read_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">read_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gdal_opts</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">max_ram_mb</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;read data in parallel across blocks, normally called by `self.run`</span>
+
+<span class="sd">        :param gdal_opts: additional options to pass to GDAL</span>
+<span class="sd">        :type gdal_opts: dict[str, str]</span>
+<span class="sd">        :param max_ram_mb: max RAM to use in MB</span>
+<span class="sd">        :type max_ram_mb: int</span>
+<span class="sd">        :return: return array ?with overlay applied?</span>
+<span class="sd">        :rtype: np.ndarray</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="n">layers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parallelOverlay</span><span class="o">.</span><span class="n">layers</span>
         <span class="n">layers</span><span class="p">[</span><span class="s2">&quot;layer_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">index</span>
         <span class="n">query_pixels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parallelOverlay</span><span class="o">.</span><span class="n">query_pixels</span>
@@ -988,6 +1014,7 @@
                     <span class="n">data_overlay</span><span class="p">,</span>
                 <span class="p">)</span>
         <span class="k">return</span> <span class="n">data_overlay</span></div>
+</div>
 
 
 

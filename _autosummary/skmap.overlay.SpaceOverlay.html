@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>skmap.overlay.SpaceOverlay &#8212; skmap library 0.7.3 documentation</title>
+    <title>skmap.overlay.SpaceOverlay &#8212; skmap library 0.9.1 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=c98573da"></script>
+    <script src="../_static/documentation_options.js?v=9dc39874"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -53,7 +53,7 @@
     <link rel="prev" title="skmap.overlay" href="skmap.overlay.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.7" />
+  <meta name="docsearch:version" content="0.9" />
   </head>
   
   
@@ -119,8 +119,8 @@
       
     
     
-    <img src="../_static/print_logo.svg" class="logo__image only-light" alt="skmap library 0.7.3 documentation - Home"/>
-    <img src="../_static/print_logo_white.svg" class="logo__image only-dark pst-js-only" alt="skmap library 0.7.3 documentation - Home"/>
+    <img src="../_static/print_logo.svg" class="logo__image only-light" alt="skmap library 0.9.1 documentation - Home"/>
+    <img src="../_static/print_logo_white.svg" class="logo__image only-dark pst-js-only" alt="skmap library 0.9.1 documentation - Home"/>
   
   
 </a></div>
@@ -178,6 +178,13 @@
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
 <li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../cpp_api.html">
+    C++ API
+  </a>
+</li>
+
+
+<li class=" ">
   <a class="nav-link dropdown-item nav-external" href="http://opendatascience.eu">
     Open Data Science Europe
   </a>
@@ -224,7 +231,7 @@
           
           
           
-          <a href="https://gitlab.com/geoharmonizer_inea/skmap" title="GitLab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-codeberg fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/openlandmap/scikit-map" title="GitLab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-code-branch fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitLab</span></a>
         </li>
 </ul></div>
@@ -311,6 +318,13 @@
 
 
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="../cpp_api.html">
+    C++ API
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-external" href="http://opendatascience.eu">
     Open Data Science Europe
   </a>
@@ -345,7 +359,7 @@
           
           
           
-          <a href="https://gitlab.com/geoharmonizer_inea/skmap" title="GitLab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-codeberg fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/openlandmap/scikit-map" title="GitLab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-code-branch fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitLab</span></a>
         </li>
 </ul></div>
@@ -587,8 +601,8 @@ are used.</p></li>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_data</span></code></p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skmap.overlay.SpaceOverlay.read_data" title="skmap.overlay.SpaceOverlay.read_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_data</span></code></a></p></td>
+<td><p>read data in parallel across blocks, normally called by <cite>self.run</cite></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#skmap.overlay.SpaceOverlay.run" title="skmap.overlay.SpaceOverlay.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a></p></td>
 <td><p>Execute the space overlay.</p></td>
@@ -596,6 +610,26 @@ are used.</p></li>
 </tbody>
 </table>
 </div>
+<dl class="py method">
+<dt class="sig sig-object py" id="skmap.overlay.SpaceOverlay.read_data">
+<span class="sig-name descname"><span class="pre">read_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gdal_opts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ram_mb</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/skmap/overlay.html#SpaceOverlay.read_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skmap.overlay.SpaceOverlay.read_data" title="Link to this definition">#</a></dt>
+<dd><p>read data in parallel across blocks, normally called by <cite>self.run</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gdal_opts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em>) – additional options to pass to GDAL</p></li>
+<li><p><strong>max_ram_mb</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – max RAM to use in MB</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>return array ?with overlay applied?</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="skmap.overlay.SpaceOverlay.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_ram_mb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdal_opts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'CPL_VSIL_CURL_ALLOWED_EXTENSIONS':</span> <span class="pre">'.tif',</span> <span class="pre">'GDAL_HTTP_VERSION':</span> <span class="pre">'1.0'}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/skmap/overlay.html#SpaceOverlay.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skmap.overlay.SpaceOverlay.run" title="Link to this definition">#</a></dt>
@@ -645,6 +679,7 @@ column per raster).</p>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skmap.overlay.SpaceOverlay"><code class="docutils literal notranslate"><span class="pre">SpaceOverlay</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skmap.overlay.SpaceOverlay.read_data"><code class="docutils literal notranslate"><span class="pre">SpaceOverlay.read_data()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skmap.overlay.SpaceOverlay.run"><code class="docutils literal notranslate"><span class="pre">SpaceOverlay.run()</span></code></a></li>
 </ul>
 </li>
