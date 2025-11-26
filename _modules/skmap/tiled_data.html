@@ -1415,7 +1415,7 @@
         <span class="n">in_probs_t</span> <span class="o">=</span> <span class="n">sb_arr</span><span class="p">(</span><span class="n">n_pix</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">)</span>
         <span class="n">best_classes_t</span> <span class="o">=</span> <span class="n">sb_arr</span><span class="p">(</span><span class="n">n_pix</span><span class="p">,</span> <span class="n">n_best_classes</span><span class="p">)</span>
         <span class="n">sb</span><span class="o">.</span><span class="n">transposeArray</span><span class="p">(</span><span class="n">in_probs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_threads</span><span class="p">,</span> <span class="n">in_probs_t</span><span class="p">)</span>
-        <span class="n">sb</span><span class="o">.</span><span class="n">fitProibabilites</span><span class="p">(</span>
+        <span class="n">sb</span><span class="o">.</span><span class="n">fitProbabilities</span><span class="p">(</span>
             <span class="n">in_probs_t</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">n_threads</span><span class="p">,</span>
             <span class="n">array_t</span><span class="p">,</span>
