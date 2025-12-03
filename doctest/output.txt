@@ -1,4 +1,4 @@
-Results of doctest builder run on 2025-11-28 16:21:05
+Results of doctest builder run on 2025-12-03 14:37:28
 =====================================================
 
 Document: _autosummary/skmap.data.eo.GLADLandsat
