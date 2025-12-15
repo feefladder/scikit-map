@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>skmap.io.base.save_rasters_cpp &#8212; skmap library 0.9.1 documentation</title>
+    <title>skmap.set_env &#8212; skmap library 0.9.1 documentation</title>
   
   
   
@@ -47,11 +47,11 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_autosummary/skmap.io.base.save_rasters_cpp';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_autosummary/skmap.set_env';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="skmap.io.base.RasterData" href="skmap.io.base.RasterData.html" />
-    <link rel="prev" title="skmap.io.base.save_rasters" href="skmap.io.base.save_rasters.html" />
+    <link rel="next" title="skmap.tiled_data" href="skmap.tiled_data.html" />
+    <link rel="prev" title="skmap.qc.Test" href="skmap.qc.Test.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="0.9" />
@@ -403,13 +403,13 @@
 </details></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="skmap.io.html">skmap.io</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="skmap.io.base.html">skmap.io.base</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="skmap.io.html">skmap.io</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="skmap.io.base.html">skmap.io.base</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="skmap.io.base.read_auth_rasters.html">skmap.io.base.read_auth_rasters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="skmap.io.base.read_rasters.html">skmap.io.base.read_rasters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="skmap.io.base.read_rasters_cpp.html">skmap.io.base.read_rasters_cpp</a></li>
 <li class="toctree-l3"><a class="reference internal" href="skmap.io.base.save_rasters.html">skmap.io.base.save_rasters</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">skmap.io.base.save_rasters_cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skmap.io.base.save_rasters_cpp.html">skmap.io.base.save_rasters_cpp</a></li>
 <li class="toctree-l3"><a class="reference internal" href="skmap.io.base.RasterData.html">skmap.io.base.RasterData</a></li>
 </ul>
 </details></li>
@@ -505,7 +505,7 @@
 <li class="toctree-l2"><a class="reference internal" href="skmap.qc.Test.html">skmap.qc.Test</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="skmap.set_env.html">skmap.set_env</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">skmap.set_env</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="skmap.tiled_data.html">skmap.tiled_data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="skmap.tiled_data.get_percentiele_string.html">skmap.tiled_data.get_percentiele_string</a></li>
 <li class="toctree-l2"><a class="reference internal" href="skmap.tiled_data.s3_list_files.html">skmap.tiled_data.s3_list_files</a></li>
@@ -559,13 +559,7 @@
     
     <li class="breadcrumb-item"><a href="skmap.html" class="nav-link">skmap</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="skmap.io.html" class="nav-link">skmap.io</a></li>
-    
-    
-    <li class="breadcrumb-item"><a href="skmap.io.base.html" class="nav-link">skmap.io.base</a></li>
-    
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">skmap.io.base.save_rasters_cpp</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">skmap.set_env</span></li>
   </ul>
 </nav>
 </div>
@@ -582,13 +576,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="skmap-io-base-save-rasters-cpp">
-<h1>skmap.io.base.save_rasters_cpp<a class="headerlink" href="#skmap-io-base-save-rasters-cpp" title="Link to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="skmap.io.base.save_rasters_cpp">
-<span class="sig-name descname"><span class="pre">save_rasters_cpp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_raster</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_dir='.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_idx=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_s3=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodata=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.int16'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs=8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdal_opts={}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdal_co={'BLOCKXSIZE':</span> <span class="pre">'1024'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'BLOCKYSIZE':</span> <span class="pre">'1024'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'COMPRESS':</span> <span class="pre">'deflate'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'TILED':</span> <span class="pre">'TRUE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'ZLEVEL':</span> <span class="pre">'9'}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose=False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/skmap/io/base.html#save_rasters_cpp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skmap.io.base.save_rasters_cpp" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
+  <section id="module-skmap.set_env">
+<span id="skmap-set-env"></span><h1>skmap.set_env<a class="headerlink" href="#module-skmap.set_env" title="Link to this heading">#</a></h1>
 </section>
 
 
@@ -607,22 +596,10 @@
 
 
   <div class="sidebar-secondary-item">
-<div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skmap.io.base.save_rasters_cpp"><code class="docutils literal notranslate"><span class="pre">save_rasters_cpp()</span></code></a></li>
-</ul>
-  </nav></div>
-
-  <div class="sidebar-secondary-item">
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/_autosummary/skmap.io.base.save_rasters_cpp.rst.txt"
+      <li><a href="../_sources/_autosummary/skmap.set_env.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>

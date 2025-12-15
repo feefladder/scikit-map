@@ -423,34 +423,20 @@
                 <article class="bd-article">
                   
   <h1>Source code for skmap.modeler</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestRegressor</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">joblib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">skmap.tiled_data</span><span class="w"> </span><span class="kn">import</span> <span class="n">TiledData</span><span class="p">,</span> <span class="n">TiledDataLoader</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">skmap_bindings</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sb</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">skmap.misc</span><span class="w"> </span><span class="kn">import</span> <span class="n">_make_dir</span><span class="p">,</span> <span class="n">TimeTracker</span><span class="p">,</span> <span class="n">_rm_dir</span><span class="p">,</span> <span class="n">sb_arr</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">NoReturn</span>
 
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;USE_PYGEOS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PROJ_LIB&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/opt/conda/share/proj/&quot;</span>
-<span class="n">n_cpus</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
-<span class="n">n_threads</span> <span class="o">=</span> <span class="n">n_cpus</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OMPI_MCA_rmaps_base_oversubscribe&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;USE_PYGEOS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PROJ_LIB&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/opt/conda/share/proj/&quot;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;NUMEXPR_MAX_THREADS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_threads</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;NUMEXPR_NUM_THREADS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_threads</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OMP_THREAD_LIMIT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_threads</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OMP_NUM_THREADS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_threads</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENBLAS_NUM_THREADS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_threads</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;MKL_NUM_THREADS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_threads</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;VECLIB_MAXIMUM_THREADS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_threads</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OMP_DYNAMIC&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;TRUE&quot;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;TREELITE_BIND_THREADS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">skmap_bindings</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sb</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">joblib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">skmap.set_env</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skmap.misc</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimeTracker</span><span class="p">,</span> <span class="n">_make_dir</span><span class="p">,</span> <span class="n">_rm_dir</span><span class="p">,</span> <span class="n">sb_arr</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skmap.tiled_data</span><span class="w"> </span><span class="kn">import</span> <span class="n">TiledData</span><span class="p">,</span> <span class="n">TiledDataLoader</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_get_out_files_depths</span><span class="p">(</span>
@@ -497,7 +483,8 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">_tree_based_load_model</span><span class="p">(</span><span class="n">model_path</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">model_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">((</span><span class="s2">&quot;.joblib&quot;</span><span class="p">,</span> <span class="s2">&quot;.lz4&quot;</span><span class="p">,</span> <span class="s2">&quot;.pkl&quot;</span><span class="p">)):</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
-        <span class="n">predict_fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">predictor</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">predictor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">predict_fn</span><span class="p">(</span><span class="n">predictor</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">predictor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">model_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.so&quot;</span><span class="p">):</span>
         <span class="kn">import</span><span class="w"> </span><span class="nn">tl2cgen</span>
 
@@ -507,7 +494,7 @@
             <span class="nb">print</span><span class="p">(</span>
                 <span class="s2">&quot;The current installation of tl2cgen is not the one with parallel DMatrix and can be slow&quot;</span>
             <span class="p">)</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="n">tl2cgen</span><span class="o">.</span><span class="n">Predictor</span><span class="p">(</span><span class="n">model_path</span><span class="p">,</span> <span class="n">nthread</span><span class="o">=</span><span class="n">n_cpus</span><span class="p">)</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">tl2cgen</span><span class="o">.</span><span class="n">Predictor</span><span class="p">(</span><span class="n">model_path</span><span class="p">,</span> <span class="n">nthread</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">())</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">predict_tl2cgen</span><span class="p">(</span><span class="n">predictor</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
             <span class="n">dmat</span> <span class="o">=</span> <span class="n">tl2cgen</span><span class="o">.</span><span class="n">DMatrix</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
@@ -523,7 +510,6 @@
             <span class="k">return</span> <span class="n">res</span>
 
         <span class="n">predict_fn</span> <span class="o">=</span> <span class="n">predict_tl2cgen</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;TREELITE_BIND_THREADS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid model path extension &#39;</span><span class="si">{</span><span class="n">model_path</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">predict_fn</span>
@@ -558,14 +544,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model_covs</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_load_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_load_model</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">((</span><span class="s2">&quot;.joblib&quot;</span><span class="p">,</span> <span class="s2">&quot;.lz4&quot;</span><span class="p">,</span> <span class="s2">&quot;.pkl&quot;</span><span class="p">)):</span>
             <span class="n">model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_path</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid model path extension &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">model_path</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_load_covs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_load_covs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_covs_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_covs_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
                 <span class="n">model_covs</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">]</span>
@@ -582,10 +568,10 @@
                 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">covs_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
                     <span class="n">model_covs</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">]</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No feature names was found&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No feature names was found&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model_covs</span> <span class="o">=</span> <span class="n">model_covs</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_prepare_covariates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">TiledDataLoader</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_prepare_covariates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">TiledDataLoader</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># prepare input and output arrays</span>
         <span class="n">n_groups</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">catalog</span><span class="o">.</span><span class="n">get_groups</span><span class="p">())</span>
         <span class="n">n_samples</span> <span class="o">=</span> <span class="n">n_groups</span> <span class="o">*</span> <span class="n">data</span><span class="o">.</span><span class="n">n_pixels</span>
@@ -604,7 +590,7 @@
             <span class="n">data</span><span class="o">.</span><span class="n">get_pixels_valid_idx</span><span class="p">(</span><span class="n">n_groups</span><span class="p">),</span>
         <span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
 
@@ -648,10 +634,10 @@
 
     <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">TiledData</span><span class="p">):</span>
         <span class="c1"># prepare input and output arrays</span>
-        <span class="k">with</span> <span class="n">TimeTracker</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;          Transpose data&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">TimeTracker</span><span class="p">(</span><span class="s2">&quot;          Transpose data&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_covariates</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="c1"># predict</span>
-        <span class="k">with</span> <span class="n">TimeTracker</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;          Model prediction&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">TimeTracker</span><span class="p">(</span><span class="s2">&quot;          Model prediction&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
             <span class="n">result</span> <span class="o">=</span> <span class="n">TiledData</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">n_responses</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_covs_valid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="o">.</span><span class="n">tile_id</span>
             <span class="p">)</span>
@@ -686,12 +672,12 @@
 
     <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">TiledData</span><span class="p">):</span>
         <span class="c1"># prepare input and output arrays</span>
-        <span class="k">with</span> <span class="n">TimeTracker</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;          Transpose data&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">TimeTracker</span><span class="p">(</span><span class="s2">&quot;          Transpose data&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_covariates</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="c1"># predict</span>
-        <span class="k">with</span> <span class="n">TimeTracker</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;          Model prediction&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">TimeTracker</span><span class="p">(</span><span class="s2">&quot;          Model prediction&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
 
-            <span class="k">def</span><span class="w"> </span><span class="nf">_single_prediction</span><span class="p">(</span><span class="n">predict</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">lock</span><span class="p">):</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">_single_prediction</span><span class="p">(</span><span class="n">predict</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">lock</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">prediction</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
                 <span class="k">with</span> <span class="n">lock</span><span class="p">:</span>
                     <span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">prediction</span>
@@ -756,10 +742,10 @@
 
     <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">TiledData</span><span class="p">):</span>
         <span class="c1"># prepare input and output arrays</span>
-        <span class="k">with</span> <span class="n">TimeTracker</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;          Transpose data&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">TimeTracker</span><span class="p">(</span><span class="s2">&quot;          Transpose data&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_covariates</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="c1"># predict</span>
-        <span class="k">with</span> <span class="n">TimeTracker</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;          Model prediction&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">TimeTracker</span><span class="p">(</span><span class="s2">&quot;          Model prediction&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
             <span class="n">result</span> <span class="o">=</span> <span class="n">TiledData</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_class</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_covs_valid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="o">.</span><span class="n">tile_id</span><span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_class</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="n">result</span><span class="o">.</span><span class="n">array</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict_fn</span><span class="p">(</span>
@@ -768,7 +754,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">tmp_res_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict_fn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_covs_valid</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_class</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">with</span> <span class="n">TimeTracker</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;          Convert and back transpose data&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">TimeTracker</span><span class="p">(</span><span class="s2">&quot;          Convert and back transpose data&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
                 <span class="k">if</span> <span class="n">tmp_res_t</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">:</span>
                     <span class="n">tmp_res_cast_t</span> <span class="o">=</span> <span class="n">sb_arr</span><span class="p">(</span><span class="n">tmp_res_t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tmp_res_t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
                     <span class="n">sb</span><span class="o">.</span><span class="n">castFloat64ToFloat32</span><span class="p">(</span><span class="n">tmp_res_t</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">n_threads</span><span class="p">,</span> <span class="n">tmp_res_cast_t</span><span class="p">)</span>
@@ -833,7 +819,7 @@
                 <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_groups</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">n_pixels_valid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_depths</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_stats</span><span class="p">)</span>
             <span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">average_trees_depth_ranges</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">average_trees_depth_ranges</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_depths</span> <span class="o">&gt;</span> <span class="mi">1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_depths</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_depths</span><span class="p">):</span>
@@ -843,7 +829,7 @@
             <span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_out_valid</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_groups</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/=</span> <span class="mi">2</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">average_trees_year_ranges</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">average_trees_year_ranges</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_groups</span> <span class="o">&gt;</span> <span class="mi">1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_groups</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_groups</span><span class="p">):</span>
@@ -853,7 +839,7 @@
             <span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_out_valid</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_depths</span><span class="p">,</span> <span class="p">:,</span> <span class="n">j</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/=</span> <span class="mi">2</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">compute_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">quantiles</span><span class="o">=</span><span class="p">[</span><span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.975</span><span class="p">],</span> <span class="n">expm1</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">quantiles</span><span class="o">=</span><span class="p">[</span><span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.975</span><span class="p">],</span> <span class="n">expm1</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">quantile_idx</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">mean</span> <span class="k">else</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_stats</span> <span class="o">=</span> <span class="n">quantile_idx</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">quantiles</span><span class="p">)</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_stats</span> <span class="o">&gt;</span> <span class="mi">0</span>
@@ -1072,12 +1058,12 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">predicted_class</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_out_cls_valid</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n_groups</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">n_pixels_valid</span><span class="p">))</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">compute_class</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_class</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_out_cls_valid</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">legend_codes</span><span class="p">[</span>
             <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_out_probs_valid</span><span class="p">[:,</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
         <span class="p">]</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">compute_kl_divergence</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_kl_divergence</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">adjusted_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_out_probs_valid</span><span class="p">[:,</span> <span class="p">:]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_out_probs_valid</span><span class="p">[:,</span> <span class="p">:],</span>

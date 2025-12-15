@@ -47,5 +47,6 @@
    parallel
    plotter
    qc
+   set_env
    tiled_data
 

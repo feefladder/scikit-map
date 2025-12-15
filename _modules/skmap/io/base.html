@@ -427,70 +427,52 @@
 <span class="sd">Raster data input and output</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">osgeo</span><span class="w"> </span><span class="kn">import</span> <span class="n">gdal</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">hashlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">sha256</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">Series</span><span class="p">,</span> <span class="n">to_datetime</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">MappingProxyType</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">base64</span><span class="w"> </span><span class="kn">import</span> <span class="n">b64decode</span><span class="p">,</span> <span class="n">encodebytes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExitStack</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">copy</span><span class="w"> </span><span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">BytesIO</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tempfile</span><span class="w"> </span><span class="kn">import</span> <span class="n">TemporaryDirectory</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">uuid</span><span class="w"> </span><span class="kn">import</span> <span class="n">uuid4</span>
+
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rasterio</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">traceback</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">gc</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">skmap_bindings</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sb</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dateutil.relativedelta</span><span class="w"> </span><span class="kn">import</span> <span class="n">relativedelta</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTML</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.animation</span><span class="w"> </span><span class="kn">import</span> <span class="n">FuncAnimation</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">traceback</span>
-
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib._animation_data</span><span class="w"> </span><span class="kn">import</span> <span class="n">DISPLAY_TEMPLATE</span><span class="p">,</span> <span class="n">JS_INCLUDE</span><span class="p">,</span> <span class="n">STYLE_INCLUDE</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">minio</span><span class="w"> </span><span class="kn">import</span> <span class="n">Minio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpl_toolkits.axes_grid1</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_axes_locatable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">osgeo</span><span class="w"> </span><span class="kn">import</span> <span class="n">gdal</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">Series</span><span class="p">,</span> <span class="n">to_datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pystac.item</span><span class="w"> </span><span class="kn">import</span> <span class="n">Item</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rasterio.windows</span><span class="w"> </span><span class="kn">import</span> <span class="n">Window</span><span class="p">,</span> <span class="n">from_bounds</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">box</span><span class="p">,</span> <span class="n">shape</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">TypedDict</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skmap</span><span class="w"> </span><span class="kn">import</span> <span class="n">SKMapBase</span><span class="p">,</span> <span class="n">SKMapGroupRunner</span><span class="p">,</span> <span class="n">SKMapRunner</span><span class="p">,</span> <span class="n">parallel</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">skmap.misc</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">ttprint</span><span class="p">,</span>
     <span class="n">_eval</span><span class="p">,</span>
-    <span class="n">update_by_separator</span><span class="p">,</span>
     <span class="n">date_range</span><span class="p">,</span>
-    <span class="n">new_memmap</span><span class="p">,</span>
     <span class="n">del_memmap</span><span class="p">,</span>
-    <span class="n">ref_memmap</span><span class="p">,</span>
     <span class="n">load_memmap</span><span class="p">,</span>
+    <span class="n">make_tempdir</span><span class="p">,</span>
+    <span class="n">new_memmap</span><span class="p">,</span>
+    <span class="n">ref_memmap</span><span class="p">,</span>
+    <span class="n">ttprint</span><span class="p">,</span>
+    <span class="n">vrt_warp</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">skmap.misc</span><span class="w"> </span><span class="kn">import</span> <span class="n">vrt_warp</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">skmap</span><span class="w"> </span><span class="kn">import</span> <span class="n">SKMapGroupRunner</span><span class="p">,</span> <span class="n">SKMapRunner</span><span class="p">,</span> <span class="n">SKMapBase</span><span class="p">,</span> <span class="n">parallel</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">dateutil.relativedelta</span><span class="w"> </span><span class="kn">import</span> <span class="n">relativedelta</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">minio</span><span class="w"> </span><span class="kn">import</span> <span class="n">Minio</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">rasterio</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">rasterio.windows</span><span class="w"> </span><span class="kn">import</span> <span class="n">Window</span><span class="p">,</span> <span class="n">from_bounds</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pystac.item</span><span class="w"> </span><span class="kn">import</span> <span class="n">Item</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">bottleneck</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">bn</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTML</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tempfile</span><span class="w"> </span><span class="kn">import</span> <span class="n">TemporaryDirectory</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">BytesIO</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">base64</span><span class="w"> </span><span class="kn">import</span> <span class="n">encodebytes</span><span class="p">,</span> <span class="n">b64decode</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">uuid</span><span class="w"> </span><span class="kn">import</span> <span class="n">uuid4</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExitStack</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mpl_toolkits.axes_grid1</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_axes_locatable</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib._animation_data</span><span class="w"> </span><span class="kn">import</span> <span class="n">JS_INCLUDE</span><span class="p">,</span> <span class="n">STYLE_INCLUDE</span><span class="p">,</span> <span class="n">DISPLAY_TEMPLATE</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">copy</span><span class="w"> </span><span class="kn">import</span> <span class="n">deepcopy</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">skmap_bindings</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sb</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">skmap.misc</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_tempdir</span>
 
 <span class="n">_INT_DTYPE</span> <span class="o">=</span> <span class="p">(</span>
     <span class="s2">&quot;uint8&quot;</span><span class="p">,</span>
@@ -778,7 +760,6 @@
 
     <span class="k">if</span> <span class="n">window</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">ds</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">base_raster</span><span class="p">)</span>
-        <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
         <span class="n">window</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">windows</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">out_idx</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">out_idx</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_layers</span><span class="p">))</span>
@@ -825,7 +806,7 @@
     <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-        <span class="n">ttprint</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;End&quot;</span><span class="p">)</span>
+        <span class="n">ttprint</span><span class="p">(</span><span class="s2">&quot;End&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">out_s3</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">out_s3</span>
@@ -860,7 +841,6 @@
 
     <span class="k">if</span> <span class="n">window</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">ds</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">raster_files</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
         <span class="n">window</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">windows</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">out_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">out_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">n_layers</span><span class="p">,</span> <span class="n">window</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="n">window</span><span class="o">.</span><span class="n">height</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
@@ -890,7 +870,7 @@
     <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-        <span class="n">ttprint</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;End&quot;</span><span class="p">)</span>
+        <span class="n">ttprint</span><span class="p">(</span><span class="s2">&quot;End&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">out_data</span></div>
 
@@ -1002,8 +982,7 @@
     <span class="k">if</span> <span class="n">overview</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">overviews</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">overviews</span><span class="p">(</span><span class="n">band</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">overview</span> <span class="ow">in</span> <span class="n">overviews</span><span class="p">:</span>
-            <span class="n">n_bands</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="n">ds</span><span class="o">.</span><span class="n">count</span><span class="p">,</span>
+            <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">height</span> <span class="o">//</span> <span class="n">overview</span><span class="p">),</span>
                 <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">width</span> <span class="o">//</span> <span class="n">overview</span><span class="p">),</span>
             <span class="p">)</span>
@@ -1014,23 +993,21 @@
             <span class="p">)</span>
     <span class="k">elif</span> <span class="n">window</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="p">(</span>
-            <span class="n">n_bands</span><span class="p">,</span>
             <span class="n">height</span><span class="p">,</span>
             <span class="n">width</span><span class="p">,</span>
-        <span class="p">)</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">count</span><span class="p">,</span> <span class="n">window</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">window</span><span class="o">.</span><span class="n">width</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">window</span><span class="o">.</span><span class="n">width</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="p">(</span>
-            <span class="n">n_bands</span><span class="p">,</span>
             <span class="n">height</span><span class="p">,</span>
             <span class="n">width</span><span class="p">,</span>
-        <span class="p">)</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">count</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">width</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">width</span>
 
-    <span class="n">ttprint</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Start new_memmap&quot;</span><span class="p">)</span>
+    <span class="n">ttprint</span><span class="p">(</span><span class="s2">&quot;Start new_memmap&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">max_rasters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">array_mm</span> <span class="o">=</span> <span class="n">new_memmap</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">max_rasters</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">array_mm</span> <span class="o">=</span> <span class="n">new_memmap</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">raster_files</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span><span class="p">))</span>
-    <span class="n">ttprint</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;End new_memmap&quot;</span><span class="p">)</span>
+    <span class="n">ttprint</span><span class="p">(</span><span class="s2">&quot;End new_memmap&quot;</span><span class="p">)</span>
 
     <span class="c1"># ref_array = ref_memmap(array_mm)</span>
     <span class="c1"># print(ref_array)</span>
@@ -1169,8 +1146,6 @@
     <span class="k">for</span> <span class="n">url_pos</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">ds_params</span> <span class="ow">in</span> <span class="n">parallel</span><span class="o">.</span><span class="n">job</span><span class="p">(</span>
         <span class="n">_read_auth_raster</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span>
     <span class="p">):</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="n">raster_files</span><span class="p">[</span><span class="n">url_pos</span><span class="p">]</span>
-
         <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">raster_data</span><span class="p">[</span><span class="n">url_pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
 
@@ -1369,7 +1344,7 @@
         <span class="n">raster_mask_val</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
         <span class="n">max_rasters</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raster_files</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">raster_files</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">raster_files</span><span class="p">]}</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raster_files</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
@@ -1655,7 +1630,7 @@
 
         <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_base_raster</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_base_raster</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]:</span>
         <span class="k">for</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="n">RasterData</span><span class="o">.</span><span class="n">PATH_COL</span><span class="p">]):</span>
             <span class="k">if</span> <span class="s2">&quot;http&quot;</span> <span class="ow">in</span> <span class="n">filepath</span><span class="p">:</span>
                 <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
@@ -1754,7 +1729,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">,</span> <span class="n">new_info</span><span class="p">])</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Execution&quot;</span>
+                <span class="s2">&quot;Execution&quot;</span>
                 <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot; time for </span><span class="si">{</span><span class="n">process_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> segs&quot;</span>
             <span class="p">)</span>
 
@@ -1803,7 +1778,7 @@
         <span class="n">to_add_info</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_info</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Execution&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot; time for </span><span class="si">{</span><span class="n">process_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> segs&quot;</span>
+            <span class="s2">&quot;Execution&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot; time for </span><span class="si">{</span><span class="n">process_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> segs&quot;</span>
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_active_group</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1947,7 +1922,7 @@
             <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
                 <span class="k">return</span> <span class="n">path</span>
 
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No base raster is available.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;No base raster is available.&quot;</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">to_dir</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -2020,7 +1995,7 @@
             <span class="n">tmp_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
             <span class="n">tmp_dir</span> <span class="o">=</span> <span class="n">tmp_dir</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">_to_s3</span><span class="p">(</span><span class="n">outfile</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_to_s3</span><span class="p">(</span><span class="n">outfile</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">_host</span> <span class="o">=</span> <span class="n">host</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
                 <span class="n">ih</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">outfile</span><span class="o">.</span><span class="n">stem</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span> <span class="s2">&quot;little&quot;</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">host</span><span class="p">)</span>
@@ -2054,7 +2029,7 @@
 
         <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Deleting&quot;</span><span class="p">)</span>
         <span class="n">del_memmap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">array</span><span class="p">)</span>
 
@@ -2359,7 +2334,7 @@
 
         <span class="k">def</span><span class="w"> </span><span class="nf">gen_pane</span><span class="p">(</span>
             <span class="n">ind</span><span class="p">,</span> <span class="n">arr</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">composite</span><span class="p">,</span> <span class="n">matrix_params</span><span class="p">,</span> <span class="n">img_title_text</span><span class="p">,</span> <span class="n">img_title_fontsize</span>
-        <span class="p">):</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">ax</span><span class="o">.</span><span class="n">pcolorfast</span><span class="p">(</span>
                     <span class="n">_preprocess</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">ind</span><span class="p">,</span> <span class="n">composite</span><span class="o">=</span><span class="n">composite</span><span class="p">),</span> <span class="o">**</span><span class="n">matrix_params</span>

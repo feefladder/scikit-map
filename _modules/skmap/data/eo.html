@@ -423,30 +423,28 @@
                 <article class="bd-article">
                   
   <h1>Source code for skmap.data.eo</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">dateutil.relativedelta</span><span class="w"> </span><span class="kn">import</span> <span class="n">relativedelta</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">bottleneck</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">bc</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pystac.extensions.file</span><span class="w"> </span><span class="kn">import</span> <span class="n">FileExtension</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">gc</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">bottleneck</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">bc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pystac.extensions.file</span><span class="w"> </span><span class="kn">import</span> <span class="n">FileExtension</span>
+
 <span class="kn">from</span><span class="w"> </span><span class="nn">skmap</span><span class="w"> </span><span class="kn">import</span> <span class="n">parallel</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">skmap.misc</span><span class="w"> </span><span class="kn">import</span> <span class="n">date_range</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">skmap.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_auth_rasters</span><span class="p">,</span> <span class="n">save_rasters</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">skmap.misc</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">_warn_deps</span><span class="p">,</span>
+    <span class="n">GoogleSheet</span><span class="p">,</span>
     <span class="n">_eval</span><span class="p">,</span>
+    <span class="n">_warn_deps</span><span class="p">,</span>
+    <span class="n">date_range</span><span class="p">,</span>
+    <span class="n">find_files</span><span class="p">,</span>
     <span class="n">nan_percentile</span><span class="p">,</span>
     <span class="n">ttprint</span><span class="p">,</span>
-    <span class="n">find_files</span><span class="p">,</span>
-    <span class="n">GoogleSheet</span><span class="p">,</span>
 <span class="p">)</span>
 
 
@@ -482,7 +480,7 @@
         <span class="n">parallel_download</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
         <span class="n">filter_additional_qa</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;https://glad.umd.edu/dataset/landsat_v1.1&quot;</span>
@@ -513,7 +511,7 @@
 
         <span class="k">return</span> <span class="n">urls</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_verbose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_verbose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
             <span class="n">ttprint</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -587,7 +585,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Read data </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">clear_sky</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Removing cloud and cloud shadow pixels.&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">(</span><span class="s2">&quot;Removing cloud and cloud shadow pixels.&quot;</span><span class="p">)</span>
                 <span class="n">clear_sky_mask</span><span class="p">,</span> <span class="n">clear_sky_pct</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clear_sky_mask</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
                 <span class="n">data</span><span class="p">[</span><span class="o">~</span><span class="n">clear_sky_mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
                 <span class="n">clear_sky_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">clear_sky_pct</span> <span class="o">&gt;=</span> <span class="n">min_clear_sky</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -687,7 +685,7 @@
 
         <span class="n">fn_raster</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">output_dir</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;B1_COUNT&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s2">&quot;B1_COUNT&quot;</span><span class="p">)</span>
             <span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tile</span><span class="si">}</span><span class="s2">.tif&quot;</span><span class="p">)</span>
         <span class="p">)</span>
 
@@ -816,7 +814,7 @@
                         <span class="n">result</span><span class="p">,</span> <span class="n">base_raster</span><span class="p">,</span> <span class="n">tile</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">,</span> <span class="n">unit8</span>
                     <span class="p">)</span>
 
-                <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Counting clear_sky pixels&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">(</span><span class="s2">&quot;Counting clear_sky pixels&quot;</span><span class="p">)</span>
                 <span class="n">output_file_count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calc_save_count</span><span class="p">(</span>
                     <span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_spectral_val</span><span class="p">,</span> <span class="n">base_raster</span><span class="p">,</span> <span class="n">tile</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">output_dir</span>
                 <span class="p">)</span>
@@ -839,22 +837,21 @@
 
 
 <span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">mimetypes</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">chain</span>
+
+    <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">pystac</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">rasterio</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
-    <span class="kn">import</span><span class="w"> </span><span class="nn">mimetypes</span>
-    <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-    <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-
+    <span class="kn">from</span><span class="w"> </span><span class="nn">bs4</span><span class="w"> </span><span class="kn">import</span> <span class="n">BeautifulSoup</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">ListedColormap</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">minio</span><span class="w"> </span><span class="kn">import</span> <span class="n">Minio</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">chain</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">bs4</span><span class="w"> </span><span class="kn">import</span> <span class="n">BeautifulSoup</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">pyproj</span><span class="w"> </span><span class="kn">import</span> <span class="n">Transformer</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">ListedColormap</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">mapping</span><span class="p">,</span> <span class="n">shape</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">pystac.extensions.item_assets</span><span class="w"> </span><span class="kn">import</span> <span class="n">ItemAssetsExtension</span>
 
 <div class="viewcode-block" id="STACGenerator">
 <a class="viewcode-back" href="../../../_autosummary/skmap.data.eo.STACGenerator.html#skmap.data.eo.STACGenerator">[docs]</a>
@@ -904,7 +901,7 @@
             <span class="n">asset_id_fields</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
             <span class="n">catalogs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="p">):</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">cog_level</span> <span class="o">=</span> <span class="n">cog_level</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">thumb_overwrite</span> <span class="o">=</span> <span class="n">thumb_overwrite</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">gsheet</span> <span class="o">=</span> <span class="n">gsheet</span>
@@ -1003,7 +1000,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_populate</span><span class="p">()</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">_verbose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_verbose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
                 <span class="n">ttprint</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -1074,7 +1071,7 @@
 
             <span class="k">return</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">items</span><span class="p">)</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">_populate_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_populate_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">new_collections</span> <span class="o">=</span> <span class="p">{}</span>
 
             <span class="k">for</span> <span class="n">rid</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">gsheet</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
@@ -1193,7 +1190,7 @@
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creating collection </span><span class="si">{</span><span class="n">collection</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2"> with </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">_populate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_populate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">new_collections</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="n">dt_fmt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_date_format</span>
             <span class="n">groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gsheet</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;catalog&quot;</span><span class="p">)</span>
@@ -1275,13 +1272,13 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">None</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">_is_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asset</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_is_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">asset</span><span class="o">.</span><span class="n">roles</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">r</span> <span class="o">==</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span>
                     <span class="k">return</span> <span class="kc">True</span>
             <span class="k">return</span> <span class="kc">False</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">_generate_thumbs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./stac&quot;</span><span class="p">,</span> <span class="n">thumb_base_url</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_generate_thumbs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./stac&quot;</span><span class="p">,</span> <span class="n">thumb_base_url</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">colls</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_collections</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                 <span class="n">args</span> <span class="o">=</span> <span class="p">[]</span>
                 <span class="n">catalog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalogs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
@@ -1626,7 +1623,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The file </span><span class="si">{</span><span class="n">raster_fn</span><span class="si">}</span><span class="s2"> not exists&quot;</span><span class="p">)</span>
                 <span class="k">return</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
-            <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">Env</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">gdal_env</span><span class="p">)</span> <span class="k">as</span> <span class="n">rio_env</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">Env</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">gdal_env</span><span class="p">):</span>
                 <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">raster_fn</span><span class="p">)</span> <span class="k">as</span> <span class="n">ds</span><span class="p">:</span>
                     <span class="n">transformer</span> <span class="o">=</span> <span class="n">Transformer</span><span class="o">.</span><span class="n">from_crs</span><span class="p">(</span>
                         <span class="n">ds</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="s2">&quot;epsg:4326&quot;</span><span class="p">,</span> <span class="n">always_xy</span><span class="o">=</span><span class="kc">True</span>
@@ -1659,7 +1656,7 @@
             <span class="n">output_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;stac&quot;</span><span class="p">,</span>
             <span class="n">catalog_type</span><span class="o">=</span><span class="n">pystac</span><span class="o">.</span><span class="n">CatalogType</span><span class="o">.</span><span class="n">SELF_CONTAINED</span><span class="p">,</span>
             <span class="n">thumb_base_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="p">):</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">            Save the STAC instance to local folder.</span>
@@ -1700,7 +1697,7 @@
                 <span class="p">)</span></div>
 
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">_s3_fput_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fpath</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">s3_bucket_name</span><span class="p">,</span> <span class="n">s3_prefix</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_s3_fput_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fpath</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">s3_bucket_name</span><span class="p">,</span> <span class="n">s3_prefix</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">fpath</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
                 <span class="n">object_name</span> <span class="o">=</span> <span class="n">fpath</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">output_dir</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">s3_prefix</span><span class="p">:</span>
@@ -1727,7 +1724,7 @@
             <span class="n">s3_prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
             <span class="n">output_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;stac&quot;</span><span class="p">,</span>
             <span class="n">catalog_type</span><span class="o">=</span><span class="n">pystac</span><span class="o">.</span><span class="n">CatalogType</span><span class="o">.</span><span class="n">SELF_CONTAINED</span><span class="p">,</span>
-        <span class="p">):</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">            Save the STAC instance to local folder and upload all the files</span>
@@ -1786,7 +1783,7 @@
                 <span class="n">joblib_args</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;backend&quot;</span><span class="p">:</span> <span class="s2">&quot;threading&quot;</span><span class="p">},</span>
             <span class="p">):</span>
                 <span class="k">continue</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;End&quot;</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">(</span><span class="s2">&quot;End&quot;</span><span class="p">)</span></div>
 </div>
 
 
@@ -1795,9 +1792,9 @@
 
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">pystac</span><span class="w"> </span><span class="kn">import</span> <span class="n">Catalog</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">whoosh.qparser</span><span class="w"> </span><span class="kn">import</span> <span class="n">QueryParser</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">whoosh.index</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_in</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">whoosh</span><span class="w"> </span><span class="kn">import</span> <span class="n">fields</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">whoosh.index</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_in</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">whoosh.qparser</span><span class="w"> </span><span class="kn">import</span> <span class="n">QueryParser</span>
 
 <div class="viewcode-block" id="STACIndex">
 <a class="viewcode-back" href="../../../_autosummary/skmap.data.eo.STACIndex.html#skmap.data.eo.STACIndex">[docs]</a>
@@ -1813,7 +1810,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">catalog</span><span class="p">:</span> <span class="n">Catalog</span><span class="p">,</span> <span class="n">index_dir</span><span class="o">=</span><span class="s2">&quot;stac_index&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">catalog</span><span class="p">:</span> <span class="n">Catalog</span><span class="p">,</span> <span class="n">index_dir</span><span class="o">=</span><span class="s2">&quot;stac_index&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span> <span class="o">=</span> <span class="n">catalog</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">index_dir</span> <span class="o">=</span> <span class="n">index_dir</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
@@ -1872,7 +1869,7 @@
             <span class="k">return</span> <span class="n">result</span></div>
 
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">_verbose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_verbose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
                 <span class="n">ttprint</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 

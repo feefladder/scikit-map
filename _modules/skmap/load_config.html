@@ -423,16 +423,18 @@
                 <article class="bd-article">
                   
   <h1>Source code for skmap.load_config</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleNamespace</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleNamespace</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+
 <span class="kn">from</span><span class="w"> </span><span class="nn">skmap.modeler</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">RFRegressor</span><span class="p">,</span>
-    <span class="n">RFRegressorTrees</span><span class="p">,</span>
+    <span class="n">Classifier</span><span class="p">,</span>
     <span class="n">Modeler</span><span class="p">,</span>
     <span class="n">Regressor</span><span class="p">,</span>
-    <span class="n">Classifier</span><span class="p">,</span>
     <span class="n">RFClassifier</span><span class="p">,</span>
+    <span class="n">RFRegressor</span><span class="p">,</span>
+    <span class="n">RFRegressorTrees</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">MODEL_REGISTRY</span> <span class="o">=</span> <span class="p">{</span>

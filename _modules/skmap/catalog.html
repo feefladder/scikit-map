@@ -423,25 +423,23 @@
                 <article class="bd-article">
                   
   <h1>Source code for skmap.catalog</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">skmap_bindings</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sb</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">skmap.misc</span><span class="w"> </span><span class="kn">import</span> <span class="n">mmdd_to_doy</span>
 
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;USE_PYGEOS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PROJ_LIB&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/opt/conda/share/proj/&quot;</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skmap.misc</span><span class="w"> </span><span class="kn">import</span> <span class="n">mmdd_to_doy</span>
 
 
 <div class="viewcode-block" id="DataCatalog">
 <a class="viewcode-back" href="../../_autosummary/skmap.catalog.DataCatalog.html#skmap.catalog.DataCatalog">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">DataCatalog</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">data_size</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">data_size</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_size</span> <span class="o">=</span> <span class="n">data_size</span>
 
@@ -477,7 +475,7 @@
         <span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">]</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="s2">&quot;common&quot;</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>  <span class="c1"># common is default</span>
+        <span class="k">if</span> <span class="s2">&quot;common&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>  <span class="c1"># common is default</span>
             <span class="n">years</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">&quot;common&quot;</span><span class="p">]</span>
 
         <span class="n">features_names</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_feature_names</span><span class="p">(</span><span class="n">catalog_dict</span><span class="p">)</span>
@@ -698,12 +696,12 @@
 
         <span class="k">return</span> <span class="n">catalog_dict</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">save_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_out_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_out_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">json_out_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">json_out_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                 <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="n">groups</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
             <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="o">.</span><span class="n">difference</span><span class="p">([</span><span class="s2">&quot;common&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">difference</span><span class="p">([</span><span class="s2">&quot;otf&quot;</span><span class="p">]))</span>
         <span class="p">)</span>  <span class="c1"># by default don&#39;t return &#39;common&#39; nor &#39;otf&#39; group</span>
@@ -788,12 +786,12 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_whales</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_whales</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature_names</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature_names</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">groups</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_groups</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid `groups` parameter. Expecting a list.&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="s2">&quot;common&quot;</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>  <span class="c1"># include &#39;common&#39; group by default</span>
+        <span class="k">if</span> <span class="s2">&quot;common&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>  <span class="c1"># include &#39;common&#39; group by default</span>
             <span class="n">groups</span> <span class="o">=</span> <span class="n">groups</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;common&quot;</span><span class="p">]</span>
         <span class="n">old_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
@@ -824,7 +822,7 @@
         <span class="k">if</span> <span class="n">missing_features_names</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_otf_features</span><span class="p">(</span><span class="n">missing_features_names</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_otf_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">otf_features</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_otf_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">otf_features</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="s2">&quot;otf&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;otf&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">otf_feature</span> <span class="ow">in</span> <span class="n">otf_features</span><span class="p">:</span>
@@ -854,7 +852,7 @@
                     <span class="n">data</span><span class="p">[</span><span class="n">dep_key</span><span class="p">][</span><span class="n">dep_name</span><span class="p">][</span><span class="s2">&quot;exec_order&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dep_exec_order</span>
         <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">data_size</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_expand_whales_dependencies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reference_catalog_data</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_expand_whales_dependencies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reference_catalog_data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">expand_whales_dependencies</span><span class="p">(</span>
             <span class="n">reference_catalog_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_size</span>
         <span class="p">)</span>
@@ -888,7 +886,7 @@
 <span class="c1">#</span>
 <div class="viewcode-block" id="print_catalog_statistics">
 <a class="viewcode-back" href="../../_autosummary/skmap.catalog.print_catalog_statistics.html#skmap.catalog.print_catalog_statistics">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">print_catalog_statistics</span><span class="p">(</span><span class="n">catalog</span><span class="p">:</span> <span class="n">DataCatalog</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_catalog_statistics</span><span class="p">(</span><span class="n">catalog</span><span class="p">:</span> <span class="n">DataCatalog</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">groups</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">catalog</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
     <span class="n">groups</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;catalog groups: </span><span class="si">{</span><span class="n">groups</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -979,7 +977,7 @@
 
 <div class="viewcode-block" id="run_whales">
 <a class="viewcode-back" href="../../_autosummary/skmap.catalog.run_whales.html#skmap.catalog.run_whales">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">run_whales</span><span class="p">(</span><span class="n">catalog</span><span class="p">:</span> <span class="n">DataCatalog</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">n_threads</span><span class="p">,</span> <span class="n">lat_info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_whales</span><span class="p">(</span><span class="n">catalog</span><span class="p">:</span> <span class="n">DataCatalog</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">n_threads</span><span class="p">,</span> <span class="n">lat_info</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="c1"># Computing on the fly covariates</span>
     <span class="n">whale_paths</span><span class="p">,</span> <span class="n">whale_keys</span><span class="p">,</span> <span class="n">whale_names</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">_get_whales</span><span class="p">()</span>
     <span class="n">max_exec_order</span> <span class="o">=</span> <span class="mi">0</span>

@@ -105134,6 +105134,7 @@ RU5ErkJggg==\
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
 <span class="kn">from</span><span class="w"> </span><span class="nn">skmap.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">toy</span>
 
 <span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;notebook&quot;</span><span class="p">)</span>
@@ -105319,8 +105320,8 @@ pip install leafmap pystac-client planetary-computer<p>The first step is selecti
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ipyleaflet</span><span class="w"> </span><span class="kn">import</span> <span class="n">DrawControl</span><span class="p">,</span> <span class="n">LayersControl</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">leafmap</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">leafmap</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ipyleaflet</span><span class="w"> </span><span class="kn">import</span> <span class="n">DrawControl</span><span class="p">,</span> <span class="n">LayersControl</span>
 
 <span class="n">m</span> <span class="o">=</span> <span class="n">leafmap</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">draw_control</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">measure_control</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fullscreen_control</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">m</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="s2">&quot;HYBRID&quot;</span><span class="p">)</span>
@@ -105343,7 +105344,6 @@ pip install leafmap pystac-client planetary-computer<p>The first step is selecti
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">shape</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">rasterio.windows</span><span class="w"> </span><span class="kn">import</span> <span class="n">Window</span><span class="p">,</span> <span class="n">from_bounds</span>
 
 <span class="n">geometry</span> <span class="o">=</span> <span class="n">shape</span><span class="p">(</span><span class="n">draw_control</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;geometry&quot;</span><span class="p">])</span>
 <span class="n">bounds</span> <span class="o">=</span> <span class="n">geometry</span><span class="o">.</span><span class="n">bounds</span>
@@ -105370,6 +105370,7 @@ Bounds:  5.67667 51.9616 5.710831 51.978785
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">planetary_computer</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pystac_client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+
 <span class="kn">from</span><span class="w"> </span><span class="nn">skmap.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">RasterData</span>
 
 <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span>
