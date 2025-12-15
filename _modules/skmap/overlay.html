@@ -607,14 +607,15 @@
                     <span class="p">}</span>
                 <span class="p">)</span>
 
-        <span class="n">gdf_blocks</span><span class="p">:</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
-            <span class="n">gdf_blocks</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">src</span><span class="o">.</span><span class="n">crs</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># convert list-of-dicts to gdf</span>
+        <span class="n">gdf_blocks</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">gdf_blocks</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">src</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="n">src</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
         <span class="k">assert</span> <span class="n">gdf_blocks</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;The layer </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> has not crs, need fix&quot;</span>
-        <span class="n">gdf_blocks</span><span class="p">:</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span> <span class="o">=</span> <span class="p">(</span>
+
+        <span class="c1"># join with samples</span>
+        <span class="n">gdf_blocks</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">samples</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">gdf_blocks</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
             <span class="o">.</span><span class="n">sjoin</span><span class="p">(</span><span class="n">gdf_blocks</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
             <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;index_right&quot;</span><span class="p">:</span> <span class="s2">&quot;block_id&quot;</span><span class="p">})</span>
@@ -894,7 +895,7 @@
                 <span class="n">ttprint</span><span class="p">(</span>
                     <span class="sa">f</span><span class="s2">&quot;Loading and sampling </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">key_layer_ids</span><span class="p">))</span><span class="si">}</span><span class="s2"> raster layers for group </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span>
                 <span class="p">)</span>
-            <span class="n">layer_nodata_dict</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;layer_id&quot;</span><span class="p">)[</span><span class="s2">&quot;nodata&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+            <span class="c1"># layer_nodata_dict = layers.set_index(&quot;layer_id&quot;)[&quot;nodata&quot;].to_dict()</span>
             <span class="n">key_layer_ids_comb</span><span class="p">,</span> <span class="n">unique_blocks_ids_comb</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span>
                 <span class="nb">list</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">key_layer_ids</span><span class="p">,</span> <span class="n">unique_blocks_ids</span><span class="p">))</span>
             <span class="p">)</span>
@@ -917,10 +918,10 @@
             <span class="n">key_layer_paths_comb</span> <span class="o">=</span> <span class="p">[</span>
                 <span class="n">layer_path_dict</span><span class="p">[</span><span class="n">ulid</span><span class="p">]</span> <span class="k">for</span> <span class="n">ulid</span> <span class="ow">in</span> <span class="n">key_layer_ids_comb</span>
             <span class="p">]</span>
-            <span class="n">key_layer_nodatas_comb</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="k">if</span> <span class="n">layer_nodata_dict</span><span class="p">[</span><span class="n">ulid</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">layer_nodata_dict</span><span class="p">[</span><span class="n">ulid</span><span class="p">]</span>
-                <span class="k">for</span> <span class="n">ulid</span> <span class="ow">in</span> <span class="n">key_layer_ids_comb</span>
-            <span class="p">]</span>
+            <span class="c1"># key_layer_nodatas_comb = [</span>
+            <span class="c1">#     np.nan if layer_nodata_dict[ulid] is None else layer_nodata_dict[ulid]</span>
+            <span class="c1">#     for ulid in key_layer_ids_comb</span>
+            <span class="c1"># ]</span>
             <span class="n">n_comb</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">key_layer_paths_comb</span><span class="p">)</span>
             <span class="n">bands_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
             <span class="k">if</span> <span class="s2">&quot;tile_id&quot;</span> <span class="ow">in</span> <span class="n">query_pixels</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
@@ -966,9 +967,7 @@
                 <span class="n">block_width_chunk</span> <span class="o">=</span> <span class="n">block_width_comb</span><span class="p">[</span>
                     <span class="n">chunk_start</span> <span class="p">:</span> <span class="n">chunk_start</span> <span class="o">+</span> <span class="n">max_comb_chunk</span>
                 <span class="p">]</span>
-                <span class="n">key_layer_nodatas_chunk</span> <span class="o">=</span> <span class="n">key_layer_nodatas_comb</span><span class="p">[</span>
-                    <span class="n">chunk_start</span> <span class="p">:</span> <span class="n">chunk_start</span> <span class="o">+</span> <span class="n">max_comb_chunk</span>
-                <span class="p">]</span>
+                <span class="c1"># key_layer_nodatas_comb[chunk_start : chunk_start + max_comb_chunk]</span>
                 <span class="n">unique_blocks_ids_chunk</span> <span class="o">=</span> <span class="n">unique_blocks_ids_comb</span><span class="p">[</span>
                     <span class="n">chunk_start</span> <span class="p">:</span> <span class="n">chunk_start</span> <span class="o">+</span> <span class="n">max_comb_chunk</span>
                 <span class="p">]</span>
