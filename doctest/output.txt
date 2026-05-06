@@ -1,4 +1,4 @@
-Results of doctest builder run on 2026-05-01 15:14:46
+Results of doctest builder run on 2026-05-06 13:07:04
 =====================================================
 
 Document: _autosummary/skmap.io.base.RasterData
@@ -23,6 +23,14 @@ Document: _autosummary/skmap.io.base.read_rasters
    3 tests in default
 3 tests in 1 items.
 3 passed and 0 failed.
+Test passed.
+
+Document: _autosummary/skmap.io.base.read_rasters_cpp
+-----------------------------------------------------
+1 items passed all tests:
+   6 tests in default
+6 tests in 1 items.
+6 passed and 0 failed.
 Test passed.
 
 Document: _autosummary/skmap.io.base.save_rasters
@@ -171,7 +179,7 @@ Test passed.
 
 Doctest summary
 ===============
-  104 tests
+  110 tests
     0 failures in tests
     0 failures in setup code
     0 failures in cleanup code

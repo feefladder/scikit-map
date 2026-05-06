@@ -433,6 +433,7 @@
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Raster data input and output</span>
 <span class="sd">&quot;&quot;&quot;</span>
+
 <span class="kn">from</span><span class="w"> </span><span class="nn">decorator</span><span class="w"> </span><span class="kn">import</span> <span class="n">contextmanager</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">rasterio.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">DatasetWriter</span>
 
@@ -662,6 +663,7 @@
 
     <span class="k">return</span> <span class="n">url_pos</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">ds_params</span>
 
+
 <span class="nd">@contextmanager</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">_new_raster</span><span class="p">(</span><span class="n">base_raster</span><span class="p">,</span> <span class="n">raster_file</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nodata</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raster_file</span><span class="p">,</span> <span class="n">Path</span><span class="p">):</span>
@@ -722,7 +724,7 @@
 
     <span class="k">with</span> <span class="n">_new_raster</span><span class="p">(</span>
         <span class="n">fn_base_raster</span><span class="p">,</span> <span class="n">raster_file</span><span class="p">,</span> <span class="n">array</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">spatial_win</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">nodata</span>
-    <span class="p">)</span> <span class="k">as</span> <span class="n">new_raster</span><span class="p">:</span> <span class="c1"># type: DatasetWriter</span>
+    <span class="p">)</span> <span class="k">as</span> <span class="n">new_raster</span><span class="p">:</span>  <span class="c1"># type: DatasetWriter</span>
         <span class="n">band_dtype</span> <span class="o">=</span> <span class="n">new_raster</span><span class="o">.</span><span class="n">dtypes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">fit_in_dtype</span><span class="p">:</span>
@@ -829,20 +831,74 @@
 <div class="viewcode-block" id="read_rasters_cpp">
 <a class="viewcode-back" href="../../../_autosummary/skmap.io.base.read_rasters_cpp.html#skmap.io.base.read_rasters_cpp">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">read_rasters_cpp</span><span class="p">(</span>
-    <span class="n">raster_files</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
-    <span class="n">band</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="n">window</span><span class="p">:</span> <span class="n">Window</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">raster_files</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">]],</span> <span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+    <span class="n">band</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">window</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Window</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">n_jobs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
-    <span class="n">out_data</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">out_idx</span><span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">out_data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">out_idx</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">dtype</span><span class="p">:</span> <span class="nb">type</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
     <span class="n">gdal_opts</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span>
     <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raster_files</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read rasters in parallel using the C++ backend, aggregating them into a single array.</span>
+
+
+<span class="sd">    :param raster_files: A list with the raster paths.</span>
+<span class="sd">    :param band: The band to be read from each raster file</span>
+<span class="sd">    :param window: The window (if any) to read from the raster</span>
+<span class="sd">    :param n_jobs: The number threads to read in parallel</span>
+<span class="sd">    :param out_data: a pre-allocated array to write into</span>
+<span class="sd">    :param out_idx: permutation array</span>
+<span class="sd">    :param dtype: Datatype (currently only `np.float32` is supported)</span>
+<span class="sd">    :param gdal_opts: additional options to be passed to GDAL</span>
+<span class="sd">    :param verbose: Whether to print extra output</span>
+
+<span class="sd">    :returns: A 2D array of ``n_bands`` by ``n_pixels``</span>
+<span class="sd">    :rtype: NDArray[np.float32]</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    &gt;&gt;&gt; import rasterio</span>
+<span class="sd">    &gt;&gt;&gt; import tempfile</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from skmap.io.base import read_rasters_cpp</span>
+<span class="sd">    &gt;&gt;&gt; from pathlib import Path</span>
+<span class="sd">    &gt;&gt;&gt; # Create a dummy raster</span>
+<span class="sd">    &gt;&gt;&gt; with tempfile.TemporaryDirectory() as tempdir:</span>
+<span class="sd">    ...     band_1 = np.random.rand(100,100).astype(np.float32)</span>
+<span class="sd">    ...     band_2 = np.random.rand(100,100).astype(np.float32)</span>
+<span class="sd">    ...     transform = rasterio.transform.from_origin(0,0,1,1)</span>
+<span class="sd">    ...     raster_name = Path(tempdir)/&quot;example.tif&quot;</span>
+<span class="sd">    ...     with rasterio.open(</span>
+<span class="sd">    ...         raster_name,</span>
+<span class="sd">    ...         &quot;w&quot;,</span>
+<span class="sd">    ...         height=100,</span>
+<span class="sd">    ...         width=100,</span>
+<span class="sd">    ...         count=2,</span>
+<span class="sd">    ...         dtype=np.float32,</span>
+<span class="sd">    ...         crs=&quot;EPSG:4326&quot;,</span>
+<span class="sd">    ...         transform=transform</span>
+<span class="sd">    ...     ) as raster:</span>
+<span class="sd">    ...         raster.write(band_1, 1)</span>
+<span class="sd">    ...         raster.write(band_2, 2)</span>
+<span class="sd">    ...     # read the raster bands in parallel</span>
+<span class="sd">    ...     bands = read_rasters_cpp(raster_files=[raster_name, raster_name], band=[1,2])</span>
+<span class="sd">    ...     # the shape is bands x n_pix</span>
+<span class="sd">    ...     assert bands.shape == (2,100*100)</span>
+<span class="sd">    ...     # bands are selected as above</span>
+<span class="sd">    ...     np.testing.assert_equal(band_1.reshape(100*100), bands[0,:])</span>
+<span class="sd">    ...     np.testing.assert_equal(band_2.reshape(100*100), bands[1,:])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raster_files</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raster_files</span><span class="p">,</span> <span class="n">Path</span><span class="p">):</span>
         <span class="n">raster_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">raster_files</span><span class="p">]</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">band</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
         <span class="n">band</span> <span class="o">=</span> <span class="p">[</span><span class="n">band</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">raster_files</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">ttprint</span><span class="p">(</span><span class="s2">&quot;No raster files provided, nothing will be written&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Should provide at least one raster file, got </span><span class="si">{</span><span class="n">raster_files</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raster_files</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Path</span><span class="p">):</span>
         <span class="n">raster_files</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">raster_files</span><span class="p">]</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">raster_files</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n_jobs</span><span class="p">:</span>
@@ -896,7 +952,7 @@
     <span class="n">bounds</span><span class="p">:</span> <span class="p">[]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">dtype</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;float32&quot;</span><span class="p">,</span>
     <span class="n">n_jobs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
-    <span class="n">data_mask</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">data_mask</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="n">expected_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">try_without_window</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
