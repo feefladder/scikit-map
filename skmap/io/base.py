@@ -394,7 +394,7 @@ def save_rasters_cpp(
 
 
 def read_rasters_cpp(
-    raster_files: Union[List[Union[str, Path]], str, Path] = [],
+    raster_files: Union[List[str], List[Path], str, Path] = [],
     band: Union[List[int], int] = 1,
     window: Optional[Window] = None,
     n_jobs: int = 8,
@@ -458,7 +458,10 @@ def read_rasters_cpp(
     if isinstance(raster_files, str) or isinstance(raster_files, Path):
         raster_files = [raster_files]
     if isinstance(band, int):
-        band = [band]
+        band = [band for _ in raster_files]
+    if len(band) < len(raster_files):
+        ttprint(f"bands {band} does not match number of raster files")
+        raise ValueError(f"Should give an integer band or one band per file")
     if len(raster_files) == 0:
         ttprint("No raster files provided, nothing will be written")
         raise ValueError(f"Should provide at least one raster file, got {raster_files}")
