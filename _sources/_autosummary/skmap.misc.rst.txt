@@ -45,6 +45,7 @@ skmap.misc
       :nosignatures:
    
       ControlS3
+      GoogleSheet
       TimeTracker
    
    

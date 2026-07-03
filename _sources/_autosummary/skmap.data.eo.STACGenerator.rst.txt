@@ -1,0 +1,27 @@
+skmap.data.eo.STACGenerator
+===========================
+
+.. currentmodule:: skmap.data.eo
+
+.. autoclass:: STACGenerator
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~STACGenerator.save_all
+      ~STACGenerator.save_and_publish_all
+      ~STACGenerator.sld2cmap
+   
+   
+
+   
+   
+   

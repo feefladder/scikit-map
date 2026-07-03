@@ -1,5 +1,21 @@
-Results of doctest builder run on 2026-07-03 12:14:37
+Results of doctest builder run on 2026-07-03 15:07:34
 =====================================================
+
+Document: _autosummary/skmap.data.eo.GLADLandsat
+------------------------------------------------
+1 items passed all tests:
+   8 tests in default
+8 tests in 1 items.
+8 passed and 0 failed.
+Test passed.
+
+Document: _autosummary/skmap.data.eo.STACGenerator
+--------------------------------------------------
+1 items passed all tests:
+  10 tests in default
+10 tests in 1 items.
+10 passed and 0 failed.
+Test passed.
 
 Document: _autosummary/skmap.io.base.RasterData
 -----------------------------------------------
@@ -35,6 +51,14 @@ Test passed.
 
 Document: _autosummary/skmap.io.base.save_rasters
 -------------------------------------------------
+1 items passed all tests:
+   3 tests in default
+3 tests in 1 items.
+3 passed and 0 failed.
+Test passed.
+
+Document: _autosummary/skmap.misc.GoogleSheet
+---------------------------------------------
 1 items passed all tests:
    3 tests in default
 3 tests in 1 items.
@@ -179,7 +203,7 @@ Test passed.
 
 Doctest summary
 ===============
-  110 tests
+  131 tests
     0 failures in tests
     0 failures in setup code
     0 failures in cleanup code
